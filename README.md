@@ -2,8 +2,11 @@
 
 This repository is used to transform Wiliam's IAM data to the correct IAMC's format. A lot of work is still needed to convert all the variable in a correct way. 
 
+## Add missing values in the programm. 
+
 The following code enables everyone to transform the data for William to IAMC format in a partial way. 
 To run correctly the code, you need to : 
+-Exort dataset with the Vensim application in csv or excel. You need to click on : On a separate colum in the export options. 
 - Create the File_To_Convert folder 
 - Put the file to convert inside. 
 - Install the numpy and pandas dependencies if the running of the cell above is not working. 
