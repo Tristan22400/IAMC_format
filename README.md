@@ -12,8 +12,8 @@ To run correctly the code, you need to :
 - Install the numpy and pandas dependencies if the running of the cell above is not working. 
 - Run the following command line pip3 install pandas and pip3 install numpy 
 - Extract the github repository on your computer. 
-- Use the following command line to execute the notebook by replacing my mynotebook by the name of the file. jupyter nbconvert --to notebook --inplace --execute mynotebook.ipynb
-- Run the variable_dict jupiter notebook to create the dictionaries used in the main file. 
+- Use the following command line to execute the notebook by replacing my mynotebook by the name of the file. jupyter nbconvert --to notebook --inplace --execute mynotebook.ipynb. If you are not directly in the folder, you need to give the path to the file. 
+- Run the variable_dict jupiter notebook to create the dictionaries used in the main file.  
 - Put the file that you want to translate in the folder File_To_Convert
 - Execute the Convert_Wiliam_result_IAMC to translate your file. 
 - If you want to convert other file, follow the instructions for each file. Add the file to folder File_To_Convert and execute the Convert_Wiliam's file. 
