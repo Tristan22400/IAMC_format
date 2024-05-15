@@ -7,10 +7,8 @@ This repository is used to transform Wiliam's IAM data to the correct IAMC's for
 The following code enables everyone to transform the data for William to IAMC format in a partial way. 
 To run correctly the code, you need to : 
 - Export dataset with the Vensim application in csv or excel. You need to click on : On a separate colum in the export options. 
-- Create the File_To_Convert folder 
-- Put the file to convert inside. 
-- Install the numpy and pandas dependencies if the running of the cell above is not working. 
-- Run the following command line pip3 install pandas and pip3 install numpy 
+- Install the numpy, pandas and nbconvert dependencies if the running of the cell above is not working. 
+- Run the following command line pip3 install pandas, pip3 install numpy, pip3 install nbconvert 
 - Extract the github repository on your computer. 
 - Use the following command line to execute the notebook by replacing my mynotebook by the name of the file. jupyter nbconvert --to notebook --inplace --execute mynotebook.ipynb. If you are not directly in the folder, you need to give the path to the file. 
 - Run the variable_dict jupiter notebook to create the dictionaries used in the main file.  
