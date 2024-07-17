@@ -318,12 +318,12 @@ def main():
     variables_used_list = scenario_variable_df['Variable'].to_list()
     variables_required_not_in = list(set(variable_required_list) - set(variables_used_list))
     print('The missing variable in the export dataset are the following:', variables_required_not_in)
-    print('The number of missing varibles is ', len(variables_required_not_in))
+    print('The number of missing variables is ', len(variables_required_not_in))
 
 
-    # ### Change the naming of Subcript in William
+    # ### Change the naming of Subscript in William
 
-    # Open the dictionnary used to change the name of Subcript in Wiliam.
+    # Open the dictionary used to change the name of Subscript in Wiliam.
     energy_dict = read_dict_txt('Create_Variable_Dict/energy_dict.txt')
     rest_dict = read_dict_txt('Create_Variable_Dict/rest_dict.txt')
 
@@ -359,7 +359,7 @@ def main():
     # Country Traduction between IAMC country and Wiliam
 
 
-    # Country Wiliam dictionnary 
+    # Country Wiliam dictionary 
     country_Wiliam_dict = read_dict_txt('Create_Variable_Dict/country_dict.txt')
 
     # Replace the region name by the ones adapted for Wiliam. 
@@ -443,7 +443,6 @@ def main():
     filename = splited_filename_with_extension[0] + 'converted' + splited_filename_with_extension[1]
 
     # Remove duplicate rows
-    # scenario_variable_df.drop_duplicates(subset=['Region', 'Variable'],inplace=True)
     scenario_variable_df.drop_duplicates(subset=['Region','Variable','Unit'],inplace=True)
 
     # Write the following dataframe to excel
