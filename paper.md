@@ -25,10 +25,11 @@ affiliations:
 	  index: 2
 	- name: Ecole des Ponts ParisTech, Paris, France
 	  index: 3
-	- Department of Applied Economics, University of Valladolid, Spain
+	- name: Department of Applied Economics, University of Valladolid, Spain
 	  index: 4
 date: 16 July 2024
 bibliography: paper.bib
+---
 
 # Summary
 The international scientific community assessing on climate change and mitigation scenarios requests standardization and 
@@ -95,4 +96,3 @@ This section describes the code with a short example to easily follow the whole 
 G.P. and J.P. acknowledge financial support from the European Union's Horizon research program under grant agreement 101056306 (IAM COMPACT project).
 
 # References
-
