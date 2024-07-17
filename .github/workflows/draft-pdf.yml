@@ -1,10 +1,9 @@
-# Add a file .github/workflows/draft-pdf.yml to your repo.
-
 name: Draft PDF
 on:
   push:
     paths:
-      - Article/**
+      - paper.md
+      - paper.bib
       - .github/workflows/draft-pdf.yml
 
 jobs:
@@ -19,9 +18,9 @@ jobs:
         with:
           journal: joss
           # This should be the path to the paper within your repo.
-          paper-path: Article/paper.md
+          paper-path: paper.md
       - name: Upload
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: paper
           # This is the output path where Pandoc will write the compiled
