@@ -1,6 +1,8 @@
 # IAMC_format
 
-This repository is used to transform Wiliam's IAM data to the correct IAMC's format. A lot of work is still needed to convert all the variable in a correct way.
+
+This repository is used to transform Wiliam's IAM data to the IAMC's format. There are some pending issues to solve and variables to be converted. 
+
 
 ## Add missing values in the programm.
 
