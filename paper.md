@@ -6,17 +6,40 @@ tags:
 	- Report
 	- IAMC format
 authors:
-    - name: Gonzalo Parrado
-	  corresponding: true
-	  orcid: 0000-0001-9835-4680
-	  equal-contrib: true
-	  affiliation: 1
-affiliations:
-    - name: Group of Energy, Economy, and System Dynamics, University of Valladolid, Spain
-	  index: 1
-	
-date: 16 July 2024
+- name: "Cl&#224;udia Rod&#233;s-Bachs"
+  orcid: "0000-0001-6696-7685"
+  affiliation: 1
+- name: Jon Sampedro
+  orcid: "0000-0002-2277-1530"
+  affiliation: 1
+- name: Russell Horowitz
+  orcid: "0000-0002-0270-3127"
+  affiliation: 1
+- name: "Dirk-Jan Van de Ven"
+  orcid: "0000-0001-9120-564X"
+  affiliation: 1
+- name: Ryna Yiyun Cui
+  orcid: "0000-0002-1186-8230"
+  affiliation: 2
+- name: Alicia Zhao
+  orcid: "0000-0002-6054-8671"
+  affiliation: 2
+- name: Matthew Zwerling
+  affiliation: 2
+- name: Zarrar Khan
+  orcid: "0000-0002-8147-8553"
+  affiliation: "3, 4"
 bibliography: paper.bib
+affiliations:
+- name: Basque Centre for Climate Change (BC3), Leioa, Spain
+  index: 1
+- name: Center for Global Sustainability, School of Public Policy, University of Maryland, College Park, MD, USA
+  index: 2
+- name: Abt; Abt Global, 6130 Executive Blvd, Rockville, MD 20852
+  index: 3
+- name: Joint Global Change Research Institute, Pacific Northwest National Laboratory, 5825 University Research Ct, College Park, MD 20740, USA
+  index: 4
+---
 
 # Summary
 The international scientific community assessing on climate change and mitigation scenarios requests standardization and 
