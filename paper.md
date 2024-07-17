@@ -10,23 +10,11 @@ authors:
 	  corresponding: true
 	  orcid: 0000-0001-9835-4680
 	  equal-contrib: true
-	  affiliation: "1, 2" 
-	- name: Tristan Martin
-	  orcid: 0000-0001-9835-4680
-	  equal-contrib: true
-	  affiliation: 3
-	- name: Juan Pérez-Marcos
-	  equal-contrib: true
-	  affiliation: "1, 4"
+	  affiliation: 1
 affiliations:
     - name: Group of Energy, Economy, and System Dynamics, University of Valladolid, Spain
 	  index: 1
-	- name: Department of System Engineering and Automation, School of Industrial Engineering, University of Valladolid, Spain
-	  index: 2
-	- name: Ecole des Ponts ParisTech, Paris, France
-	  index: 3
-	- Department of Applied Economics, University of Valladolid, Spain
-	  index: 4
+	
 date: 16 July 2024
 bibliography: paper.bib
 
