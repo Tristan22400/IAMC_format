@@ -25,7 +25,7 @@ affiliations:
 	  index: 2
 	- name: Ecole des Ponts ParisTech, Paris, France
 	  index: 3
-	- Department of Applied Economics, University of Valladolid, Spain
+	- name: Department of Applied Economics, University of Valladolid, Spain
 	  index: 4
 date: 16 July 2024
 bibliography: paper.bib
