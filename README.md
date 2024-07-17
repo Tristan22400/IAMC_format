@@ -1,20 +1,33 @@
 # IAMC_format
 
-This repository is used to transform Wiliam's IAM data to the correct IAMC's format. A lot of work is still needed to convert all the variable in a correct way. 
+This repository is used to transform Wiliam's IAM data to the correct IAMC's format. A lot of work is still needed to convert all the variable in a correct way.
 
-## Add missing values in the programm. 
+## Add missing values in the programm.
 
-The following code enables everyone to transform the data for William to IAMC format in a partial way. 
-To run correctly the code, you need to : 
-- Export dataset with the Vensim application in csv or excel. You need to click on : On a separate colum in the export options. 
-- Install the numpy, pandas and nbconvert dependencies if the running of the cell above is not working. 
-- Run the following command line pip3 install pandas, pip3 install numpy, pip3 install nbconvert 
-- Extract the github repository on your computer. 
-- Use the following command line to execute the notebook by replacing my mynotebook by the name of the file. jupyter nbconvert --to notebook --inplace --execute mynotebook.ipynb. If you are not directly in the folder, you need to give the path to the file. 
-- Run the variable_dict jupiter notebook to create the dictionaries used in the main file.  
-- Put the file that you want to translate in the folder File_To_Convert
-- Execute the Convert_Wiliam_result_IAMC to translate your file. 
-- If you want to convert other file, follow the instructions for each file. Add the file to folder File_To_Convert and execute the Convert_Wiliam's file. 
-- Once, you have translated on the file you want, you can run the merge_csv file with the same command line to merge all files in the Folder File_Converted.
+The following code enables everyone to transform the data for William to IAMC format in a partial way.
+To run correctly the code, you need to :
 
+- Export dataset with the Vensim application in csv or excel. You need to click on : On a separate colum in the export options.
+- Extract the github repository on your computer.
+- Open a terminal and go the Conversion-Script directory to move in the terminal, you can use the command line: cd filename
+  To go back the command line is : cd ..
+- Run the following command in your terminal : pip install -r requirements.txt
+  If this is not working, you need to download Python on your computer and relaunch the command.
+- Put the file that you want to translate in the folder File_To_Convert.
+- Execute the Convert_Wiliam_result_IAMC to translate your file by writing the following command line in the terminal : python Convert_Wiliam_result_IAMC-format.py
+  You need to be in the Conversion-Script directory to run the file.
+- If you want to convert other file, follow the previous instructions for each file. Add the file to folder File_To_Convert and execute the Convert_Wiliam's file.
+- Once, you have translated on the file you want, you can run the merge_csv file with the same command line to merge all files that are in the Folder File_Converted with the command line:
+  python Merge_csv.py
 
+Contributions :
+
+If you want to contribute to the repository, please follow the following settings in VS Code settings:
+{ "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+"[python]": {
+"editor.formatOnSave": true,
+"editor.defaultFormatter": "charliermarsh.ruff"
+},
+"editor.formatOnPaste": true,
+"editor.formatOnSave": true}
