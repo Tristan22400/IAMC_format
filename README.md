@@ -4,7 +4,7 @@
 This repository is used to transform Wiliam's IAM data to the IAMC's format. There are some pending issues to solve and variables to be converted. 
 
 
-## Add missing values in the programm.
+## Add missing values in the program.
 
 The following code enables everyone to transform the data for William to IAMC format in a partial way.
 To run correctly the code, you need to :
