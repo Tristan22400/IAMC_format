@@ -5,8 +5,6 @@ import time
 import ast
 
 
-
-
 def get_last_added_file(folder_path):
     # Get a list of all files in the folder
     files = os.listdir(folder_path)
@@ -297,7 +295,7 @@ def main():
     data_name_df = pd.read_excel('Variable_Reference/Variable_name_IAMC.xlsx')
     # Remplacer les tirets du bas par des espaces dans la colonne
     # data_name_df['WILIAM_variable'] = data_name_df['WILIAM_variable'].str.replace('_', ' ')
-    # Drop rows with NaN values which corresponds to values not conserv for the final upload of data in IAMC format
+    # Drop rows with NaN values which corresponds to values not conserve for the final upload of data in IAMC format
     data_name_df.dropna(subset=['IAMC_variable'],inplace=True)
     data_name_df
 
