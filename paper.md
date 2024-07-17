@@ -12,7 +12,7 @@ authors:
 	  equal-contrib: true
 	  affiliation: "1, 2" 
 	- name: Tristan Martin
-	  orcid:
+	  orcid: 0000-0001-9835-4680
 	  equal-contrib: true
 	  affiliation: 3
 	- name: Juan Pérez-Marcos
