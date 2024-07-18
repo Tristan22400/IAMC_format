@@ -101,6 +101,33 @@ def process_name_change(energy_processes_transformed):
     return energy_processes_new
 
 
+# List of conjonctions 
+conjunctions = {"and", "or", "but", "nor", "for", "yet", "so", "w/", "w/o", "of"}
+
+
+def capitalize_non_conjunctions(s):
+    """
+    Capitalize each word in the string except for conjunctions.
+    """
+    words = s.split()
+    capitalized_words = [
+        word.capitalize() if word.lower() not in conjunctions else word
+        for word in words
+    ]
+    return " ".join(capitalized_words)
+
+
+def capitalize_after_pipe(s):
+    """
+    Capitalize each word after a pipe character '|' except for 'w/' and 'w/o'.
+    """
+    parts = s.split("|")
+    for i in range(len(parts)):
+        if not parts[i].startswith("w/"):
+            parts[i] = capitalize_non_conjunctions(parts[i])
+    return "|".join(parts)
+
+
 def main():
     # ### Country Dict
     file_path = (
@@ -394,6 +421,9 @@ def main():
     energy_dict.update(energy_vector_dict)
     energy_dict.update(energy_primary_dict)
     energy_dict.update(transformation_dict)
+
+    # Apply the transformation to each value in the dictionary
+    energy_dict = {k: capitalize_after_pipe(v) for k, v in energy_dict.items()}
 
     # Save dictionary with pprint
     with open("Create_Variable_Dict/energy_dict.txt", "w") as f:
