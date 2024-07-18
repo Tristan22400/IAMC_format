@@ -13,7 +13,7 @@ To run correctly the code, you need to :
 - Extract the github repository on your computer.
 - Open a terminal and go the Conversion-Script directory to move in the terminal, you can use the command line: cd filename
   To go back the command line is : cd ..
-- Run the following command in your terminal : pip install -r requirements.txt
+- Run the following command in your terminal : pip install -r requirements.txt --user
   If this is not working, you need to download Python on your computer and relaunch the command.
 - Put the file that you want to translate in the folder File_To_Convert.
 - Execute the Convert_Wiliam_result_IAMC to translate your file by writing the following command line in the terminal : python Convert_Wiliam_result_IAMC-format.py
