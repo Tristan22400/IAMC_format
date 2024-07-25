@@ -325,10 +325,6 @@ def main():
         pdf.image("Primary_Energy.png", x=10, y=30, w=190)
     
     print("Report's creation in process")
-    
-
-    
-
     pdf.output(scenario + "report.pdf", "F")
 
 

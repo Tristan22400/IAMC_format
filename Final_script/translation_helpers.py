@@ -43,7 +43,7 @@ def move_crochets(s):
 
 
 # Change the format of the string to respect IAMC's format
-def transform_string(s, upper_word_list, vehicule_list):
+def format_string(s, upper_word_list, vehicule_list):
     # Split the string into words
     if pd.isnull(s):
         return s
@@ -91,7 +91,7 @@ def process_csv(
     sectors_dict,
     economy_dashboard_dict,
     upper_word_list,
-    vehicule_list,
+    vehicle_list,
 ):
     original_to_transformed = {}
 
@@ -118,13 +118,16 @@ def process_csv(
                 elif economy_dashboard_dict.get(part, None):
                     part = economy_dashboard_dict[part]
                 
-                
-
+                transformed_parts.append(part)
 
             # Reconstruct the string with transformed parts
             transformed_string = "|".join(transformed_parts)
+
+            # Move the word in the brackets at the end of the word.
             transformed_string = move_crochets(transformed_string)
-            transformed_string = transformed_string(transformed_string, upper_word_list, vehicule_list)
+
+            # Transform the string to respect the IAMC format
+            transformed_string = format_string(transformed_string, upper_word_list, vehicle_list)
 
             # Map the original string to the transformed string
             original_to_transformed[original_string] = transformed_string
@@ -137,7 +140,7 @@ def main():
     csv_file_path = "missing_variable.csv" 
 
     # Open the text file containing the energy dictionary
-    with open('../Create_Variable_Dict/energy_dict.txt', 'r') as f:
+    with open("../Conversion-Script/Create_Variable_Dict/energy_dict.txt", "r") as f:
         # Read the contents of the file
         energy_dict_str = f.read()
 
@@ -146,7 +149,7 @@ def main():
 
 
     # Open the text file containing the rest dictionary
-    with open('../Create_Variable_Dict/rest_dict.txt', 'r') as f:
+    with open("../Conversion-Script/Create_Variable_Dict/rest_dict.txt", "r") as f:
         # Read the contents of the file
         rest_dict_str = f.read()
 
@@ -155,7 +158,7 @@ def main():
 
 
     # Open the text file containing the sectors dictionary
-    with open('../Create_Variable_Dict/sectors_dict.txt', 'r') as f:
+    with open("../Conversion-Script/Create_Variable_Dict/sectors_dict.txt", "r") as f:
         # Read the contents of the file
         sectors_str = f.read()
 
@@ -164,7 +167,9 @@ def main():
 
 
     # Open the text file containing the dictionary for the economy dashboard subscript.
-    with open('../Create_Variable_Dict/economy_dashboard_dict.txt', 'r') as f:
+    with open(
+        "../Conversion-Script/Create_Variable_Dict/economy_dashboard_dict.txt", "r"
+    ) as f:
         # Read the contents of the file
         economy_dashboard_str = f.read()
 
@@ -219,10 +224,10 @@ def main():
     "GDP",
     "PPP",
     ]
-    vehicule_list = ["gasoline", "gas", "diesel"]
+    vehicle_list = ["gasoline", "gas", "diesel"]
 
     # Read the CSV file into a pandas DataFrame
-    data_name_df = pd.read_excel("../Variable_Reference/Variable_name_IAMC.xlsx")
+    data_name_df = pd.read_excel("../Conversion-Script/Variable_Reference/Variable_name_IAMC.xlsx")
     # Create a dict with Wiliam's name as key, IAMC's name as value
     IAMC_WILIAM_name_dict = data_name_df.set_index('WILIAM_variable')['IAMC_variable'].to_dict()
 
@@ -234,10 +239,13 @@ def main():
         sectors_dict,
         economy_dashboard_dict,
         upper_word_list,
-        vehicule_list,
+        vehicle_list,
     )
-
+    print(translation_dict)
     # Save dictionary with pprint
     with open("new_variable_name_dict.txt", "w") as f:
         pprint.pprint(translation_dict, f)
 
+
+if __name__ == "__main__":
+    main()
