@@ -2,10 +2,19 @@
 from fpdf import FPDF
 
 class PDFReport(FPDF):
+    
+        
     def header(self):
-        # Add a title at the top of each page
-        self.set_font("Arial", "B", 12)
-        self.cell(0, 10, "IAMC Data Report", align="C", ln=True)
+        # Logo
+        self.image('Geeds.jpg', 10, 8, 33)
+        # Arial bold 15
+        self.set_font('Arial', 'B', 15)
+        # Move to the right
+        self.cell(80)
+        # Title
+        self.cell(30, 10, 'Report Scenario', 1, 0, 'C')
+        # Line break
+        self.ln(20)
 
     def footer(self):
         # Add page number at the bottom of each page

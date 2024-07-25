@@ -97,9 +97,10 @@ def main():
     create_folder_if_not_exists(folder_name_converted)
 
     # Check the existence of the File_To_Convert folder 
-    folder_created_bool = os.path.isdir(folder_path + folder_name_to_convert)
+    folder_created_bool = os.path.isdir(os.path.join(folder_path, folder_name_to_convert))
     if not folder_created_bool: 
         print('The path to the File_To_Convert folder', folder_path + folder_name_to_convert, ' is not a directory.' )
+
 
     # Get the last upload excel file
     real_folder_path = os.path.join(folder_path, folder_name_to_convert)
@@ -210,17 +211,16 @@ def main():
     }
 
     # Open the text file containing the country dictionary to translate the country name of Wiliam to the IAMC format.
-    with open('../Create_Variable_Dict/country_dict.txt', 'r') as f:
+    with open("../Conversion-Script/Create_Variable_Dict/country_dict.txt", "r") as f:
         # Read the contents of the file
         country_dict_str = f.read()
 
     # Convert the string representation of the dictionary back to a dictionary object
     country_dict = ast.literal_eval(country_dict_str)
 
-
     # Order the subscript of each variable and give the right region to each row
     scenario_variable_df = scenario_variable_df.apply(
-        aggregate_variable_name, args=(counter, existing_country_Wiliam_dict, country_dict), axis=1
+        aggregate_variable_name, args=(counter, existing_country_Wiliam_dict, country_dict),axis=1
     )
 
     # Remove the subscript columns once they have been added at the end of the variable name
@@ -228,7 +228,7 @@ def main():
     scenario_variable_df.drop(columns=drop_columns_list, inplace=True)
 
     # Open the text file containing the variable dictionary to translate each variable name of Wiliam to the variable name in the IAMC format.
-    with open("../Create_Variable_Dict/variable_name_dict.txt", "r") as f:
+    with open("../Conversion-Script/Create_Variable_Dict/variable_name_dict.txt", "r") as f:
         # Read the contents of the file
         variable_name_dict_str = f.read()
 
@@ -243,7 +243,7 @@ def main():
 
 
     scenario_variable_df["Variable"] = scenario_variable_df["Variable"].apply(
-        replace_and_track, args=(variable_name_dict, missing_variable), axis=1
+        replace_and_track, args=(variable_name_dict, missing_variable)
     )
 
     # Create the path for the file containing the missing variable.
@@ -296,7 +296,7 @@ def main():
     try:
         scenario_df = pyam.IamDataFrame(
             os.path.join(folder_file_converted, filename)
-        )
+    )
     except:
         print("ERROR opening the file with results in IAMC format")
         exit()
@@ -304,38 +304,32 @@ def main():
     # 3. This defines the model and scenario used for the report
     args = dict(model="WILIAM", scenario=scenario)
 
-    datagg = scenario_df.aggregate_region("Population").timeseries()
-
-    # "aggregate_region" function generates a DataFrame object instead of IamDataFrame object. We plot results with DataFrame functions
-    dataggtrans = datagg.transpose()
-
-    # Generate the plot. To customize this plot, go to: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html
-    dataggtrans.plot(kind='line',
-                            title="Global population",
-                            legend=False,
-                            ylabel="Billions of people",
-                            xlabel="Year",
-                            figsize=[10,5])
-    plt.legend(loc=1)
-    plt.tight_layout()
-    plt.savefig('Population.png')
-    
-    print("Report's creation in process")
     # Create instance of FPDF class
     pdf = report_pdf.PDFReport()
 
-    # Add a page
-    pdf.add_page()
-    pdf.cell(0, 10, 'Figure 1: World Population Evolution', ln=True)
-    pdf.image("Population.png", x=10, y=30, w=190)
+    # Plot 
+    data = scenario_df.filter(
+        model=args["model"], scenario=args["scenario"], variable="Primary Energy|*"
+    )
+    if len(data.variables)> 0: 
 
-    pdf.output("tuto2.pdf", "F")
+        data.plot(color="region", title= 'Primary Energy')
+        data.timeseries()
+        plt.legend(loc=1)
+        plt.tight_layout()
+        plt.savefig('Primary_Energy.png')
 
-
-
+        # Add a page
+        pdf.add_page()
+        pdf.cell(0, 10, "Figure 1: World Primary Energy Consumption", ln=True)
+        pdf.image("Primary_Energy.png", x=10, y=30, w=190)
+    
+    print("Report's creation in process")
     
 
     
+
+    pdf.output(scenario + "report.pdf", "F")
 
 
 
