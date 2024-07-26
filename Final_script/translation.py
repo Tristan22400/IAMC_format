@@ -48,7 +48,7 @@ def create_folder_if_not_exists(folder_name):
 
 
 # Aggregate the subscripts at the end of the variable
-def aggregate_variable_name(row, counter, existing_country_Wiliam_dict, country_dict):
+def aggregate_subscript_variable_name(row, counter, existing_country_Wiliam_dict, country_dict):
     for k in range(counter):
         subscript = row["Subscript " + str(k)]
 
@@ -220,7 +220,7 @@ def main():
 
     # Order the subscript of each variable and give the right region to each row
     scenario_variable_df = scenario_variable_df.apply(
-        aggregate_variable_name, args=(counter, existing_country_Wiliam_dict, country_dict),axis=1
+        aggregate_subscript_variable_name, args=(counter, existing_country_Wiliam_dict, country_dict),axis=1
     )
 
     # Remove the subscript columns once they have been added at the end of the variable name
@@ -235,13 +235,11 @@ def main():
     # Convert the string representation of the dictionary back to a dictionary object
     variable_name_dict = ast.literal_eval(variable_name_dict_str)
 
-    # Convert all the variable name to the IAMC format and get the variable with a missing translation. 
+    # Convert all the variable name to the IAMC format and get the variables with a missing translation. 
     # Create the list of missing variable. 
     missing_variable = []
 
     # Apply the function to the DataFrame column
-
-
     scenario_variable_df["Variable"] = scenario_variable_df["Variable"].apply(
         replace_and_track, args=(variable_name_dict, missing_variable)
     )
@@ -264,17 +262,18 @@ def main():
         + splited_filename_with_extension[1]
     )
 
-    # Remove duplicate rows
-    # scenario_variable_df.drop_duplicates(subset=['Region', 'Variable'],inplace=True)
-    #scenario_variable_df.drop_duplicates(subset=["Region", "Variable", "Unit"], inplace=True)
-
     # Check for duplicate rows
-    duplicate_rows = scenario_variable_df[scenario_variable_df.duplicated(subset=["Region", "Variable", "Unit"])]
+    duplicate_rows = scenario_variable_df[
+        scenario_variable_df.duplicated(subset=["Region", "Variable", "Unit"])
+    ]
 
     # Count the number of duplicate rows. Normally we should find zero duplicates.
     num_duplicate_rows = duplicate_rows.shape[0]
-    if num_duplicate_rows > 0: 
+    if num_duplicate_rows > 0:
         print("Number of Duplicate Rows:", num_duplicate_rows)
+
+    # Remove duplicate rows
+    scenario_variable_df.drop_duplicates(subset=["Region", "Variable", "Unit"], inplace=True)
 
     # Write the following dataframe to excel
     if (
