@@ -134,47 +134,36 @@ def process_csv(
 
     return original_to_transformed
 
+def open_dict(dict_filename):
+    # Open the text file containing the dictionary
+    with open("../Conversion-Script/Create_Variable_Dict/" + dict_filename, "r") as f:
+        # Read the contents of the file
+        read_dict_str = f.read()
+
+    # Convert the string representation of the dictionary back to a dictionary object
+    read_dict = ast.literal_eval(read_dict_str)
+    return read_dict
+
+
 def main(): 
 
     # File that should be read.
     csv_file_path = "missing_variable.csv" 
 
     # Open the text file containing the energy dictionary
-    with open("../Conversion-Script/Create_Variable_Dict/energy_dict.txt", "r") as f:
-        # Read the contents of the file
-        energy_dict_str = f.read()
-
-    # Convert the string representation of the dictionary back to a dictionary object
-    energy_dict = ast.literal_eval(energy_dict_str)
+    energy_dict = open_dict("energy_dict.txt")
 
 
     # Open the text file containing the rest dictionary
-    with open("../Conversion-Script/Create_Variable_Dict/rest_dict.txt", "r") as f:
-        # Read the contents of the file
-        rest_dict_str = f.read()
-
-    # Convert the string representation of the dictionary back to a dictionary object
-    rest_dict = ast.literal_eval(rest_dict_str)
+    rest_dict = open_dict("rest_dict.txt")
 
 
     # Open the text file containing the sectors dictionary
-    with open("../Conversion-Script/Create_Variable_Dict/sectors_dict.txt", "r") as f:
-        # Read the contents of the file
-        sectors_str = f.read()
-
-    # Convert the string representation of the dictionary back to a dictionary object
-    sectors_dict = ast.literal_eval(sectors_str)
+    sectors_dict = open_dict("sectors_dict.txt")
 
 
     # Open the text file containing the dictionary for the economy dashboard subscript.
-    with open(
-        "../Conversion-Script/Create_Variable_Dict/economy_dashboard_dict.txt", "r"
-    ) as f:
-        # Read the contents of the file
-        economy_dashboard_str = f.read()
-
-    # Convert the string representation of the dictionary back to a dictionary object
-    economy_dashboard_dict = ast.literal_eval(economy_dashboard_str)
+    economy_dashboard_dict = open_dict("economy_dashboard.txt")
 
     # List with the words in uppercase which will not be capitalized by the next functions
     upper_word_list = [
@@ -241,7 +230,7 @@ def main():
         upper_word_list,
         vehicle_list,
     )
-    print(translation_dict)
+    
     # Save dictionary with pprint
     with open("new_variable_name_dict.txt", "w") as f:
         pprint.pprint(translation_dict, f)

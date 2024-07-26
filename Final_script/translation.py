@@ -311,7 +311,7 @@ def main():
     data = scenario_df.filter(
         model=args["model"], scenario=args["scenario"], variable="Primary Energy|*"
     )
-    if len(data.variables)> 0: 
+    if len(data.variable)> 0: 
 
         data.plot(color="region", title= 'Primary Energy')
         data.timeseries()
