@@ -71,9 +71,18 @@ The user can generate a specific environment to install (via pip) all the requir
 3. Execute the file *Convert_Wiliam_result_IAMC-format.py* to translate the results under IAMC format criteria. The script converts all the existing CSV files in the folder (`python Convert_Wiliam_result_IAMC-format.py`).
 4. Finally, run the *merge_csv* to merge all files present in the folder *File_Converted* (`python Merge_csv.py`)
 
-There are several notebooks available in the folder *Visualization* to facilitate the learning process, including a general report with principal variables of the model, as well as specific examples of customizable plots.
+All the instructions to work with the IAMC format are available 
+
 
 ## Notes about the architecture
+
+The `wiliamcformat` package is built upon a suit of tools and functions provided by the `pyam` project. This project uses well-known libraries such as `pandas` and `plotly` to manage and visualize the data. So, results in WILIAM may be enriched with new updates in the aforementioned packages. `wiliamcformat` is structured in two blocks:
+- Translation of WILIAM variables into IAMC standards.
+- Notebooks to facilitate the reporting and visualization of data.
+
+The user can download WILIAM in two languages, Python (https://github.com/LOCOMOTION-h2020/pywiliam) and Vensim (https://github.com/LOCOMOTION-h2020/WILIAM_model_VENSIM), and generate the CSV file of a simulation. Both tools were developed during the European H2020 Locomotion project (Grant Agreement number 821105). 
+
+Finally, several notebooks are available in the folder *Visualization* to facilitate the learning process, including a general report with principal variables of the model, as well as specific examples of customizable plots.
 
 # Acknowledgements
 
