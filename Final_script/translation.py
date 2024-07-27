@@ -6,6 +6,7 @@ import pyam
 import matplotlib.pyplot as plt
 import report_pdf
 import argparse
+import translation_helpers
 
 
 def get_last_added_file(folder_path):
@@ -110,6 +111,16 @@ def aggregate_rows(df, aggregations):
     df_final = pd.concat([df, new_df], ignore_index=True)
 
     return df_final
+
+def open_dict(dict_filename):
+    # Open the text file containing the dictionary
+    with open("../Conversion-Script/Create_Variable_Dict/" + dict_filename, "r") as f:
+        # Read the contents of the file
+        read_dict_str = f.read()
+
+    # Convert the string representation of the dictionary back to a dictionary object
+    read_dict = ast.literal_eval(read_dict_str)
+    return read_dict
 
 
 def main():
@@ -249,12 +260,7 @@ def main():
     }
 
     # Open the text file containing the country dictionary to translate the country name of Wiliam to the IAMC format.
-    with open("../Conversion-Script/Create_Variable_Dict/country_dict.txt", "r") as f:
-        # Read the contents of the file
-        country_dict_str = f.read()
-
-    # Convert the string representation of the dictionary back to a dictionary object
-    country_dict = ast.literal_eval(country_dict_str)
+    country_dict = open_dict("country_dict.txt")
 
     # Order the subscript of each variable and give the right region to each row
     scenario_variable_df = scenario_variable_df.apply(
@@ -265,29 +271,11 @@ def main():
     drop_columns_list = ["Subscript " + str(k) for k in range(counter)]
     scenario_variable_df.drop(columns=drop_columns_list, inplace=True)
 
-    # Open the text file containing the aggregation dictionary .
-    with open("../Conversion-Script/Create_Variable_Dict/aggregation.txt", "r") as f:
-        # Read the contents of the file
-        aggregation_dict_str = f.read()
-
-    # Convert the string representation of the dictionary back to a dictionary object
-    aggregation_dict = ast.literal_eval(aggregation_dict_str)
-
-    # Create the aggregations rows in the dataframe.
-    scenario_variable_df = aggregate_rows(scenario_variable_df, aggregation_dict)
-
     # Open the text file containing the variable dictionary to translate each variable name of Wiliam to the variable name in the IAMC format.
-    with open(
-        "../Conversion-Script/Create_Variable_Dict/variable_name_dict.txt", "r"
-    ) as f:
-        # Read the contents of the file
-        variable_name_dict_str = f.read()
+    variable_name_dict = open_dict("variable_name_dict.txt")
 
-    # Convert the string representation of the dictionary back to a dictionary object
-    variable_name_dict = ast.literal_eval(variable_name_dict_str)
-
-    # Convert all the variable name to the IAMC format and get the variables with a missing translation. 
-    # Create the list of missing variable. 
+    # Convert all the variable name to the IAMC format and get the variables with a missing translation.
+    # Create the list of missing variable.
     missing_variable = []
 
     # Apply the function to the DataFrame column
@@ -295,12 +283,20 @@ def main():
         replace_and_track, args=(variable_name_dict, missing_variable)
     )
 
-    # Create the path for the file containing the missing variable.
-    missing_variable_path = os.path.join(folder_path , 'missing_variable.csv')
-    print("The translation of ", len(missing_variable), " variables are missing. You can find the file with all of them here", missing_variable_path)
+    # Open the text file containing the aggregation dictionary .
+    aggregation_dict = open_dict("aggregation.txt")
 
-    # Save the untranslated variable in csv file. 
-    np.savetxt(missing_variable_path, missing_variable, delimiter=", ", fmt="% s")
+    # Create the aggregations rows in the dataframe.
+    scenario_variable_df = aggregate_rows(scenario_variable_df, aggregation_dict)
+
+    # Create the path for the file containing the missing variable.
+    print(
+        "The translation of ",
+        len(missing_variable),
+        " variables are missing. You can find all the translation in the file called new_variable_name_dict.txt")
+    # Process the automatic translation of missing variables. 
+    translation_helpers.create_automatic_translation(missing_variable)
+    
 
     # Write the new excel file in the File_Converted folder
     folder_file_converted = os.path.join(folder_path, folder_name_converted)
