@@ -73,6 +73,44 @@ def replace_and_track(value, variable_name_dict,missing_variable):
         missing_variable.append(value)
         return value
 
+# Function to create the aggregations of each row
+def aggregate_rows(df, aggregations):
+    # List of new rows
+    new_rows = []
+    # Get the list of all regions
+    regions = df['Region'].unique()
+
+    for region in regions:
+        # Filter the dataframe on the actual region
+        df_region = df[df['Region'] == region]
+        for names, new_name in aggregations.items():
+            # Check if all the names are present
+            if all(name in df_region["Variable"].values for name in names):
+                # Filter the dataframe with the names of interest
+                df_subset = df_region[df_region["Variable"].isin(names)]
+
+                # Compute the sum of the aggregation of the value
+                summed_values = df_subset.drop(columns=["Variable", "Unit", "Model", "Scenario", "Region"]).sum()
+
+                # Create the new aggreagted rows
+                new_row = {
+                    "Model": df_subset["Model"].iloc[0],
+                    "Scenario": df_subset["Scenario"].iloc[0],
+                    "Region": region,
+                    "Variable": new_name,
+                    "Unit": df_subset["Unit"].iloc[0],
+                    ** summed_values.to_dict(),
+                }
+                new_rows.append(new_row)
+
+    # Create a dataframe with the new rows
+    new_df = pd.DataFrame(new_rows)
+
+    # Concatenate the two dataframe to get the aggregated rows
+    df_final = pd.concat([df, new_df], ignore_index=True)
+
+    return df_final
+
 
 def main():
     # Parse the argument put in the command line. 
@@ -116,7 +154,7 @@ def main():
     # Get the correct naming for the converted file
     filename_with_extension = os.path.basename(last_file)
     splited_filename_with_extension = os.path.splitext(filename_with_extension)
-    print(splited_filename_with_extension)
+    
     filename = (
         splited_filename_with_extension[0]
         + "converted"
@@ -227,8 +265,21 @@ def main():
     drop_columns_list = ["Subscript " + str(k) for k in range(counter)]
     scenario_variable_df.drop(columns=drop_columns_list, inplace=True)
 
+    # Open the text file containing the aggregation dictionary .
+    with open("../Conversion-Script/Create_Variable_Dict/aggregation.txt", "r") as f:
+        # Read the contents of the file
+        aggregation_dict_str = f.read()
+
+    # Convert the string representation of the dictionary back to a dictionary object
+    aggregation_dict = ast.literal_eval(aggregation_dict_str)
+
+    # Create the aggregations rows in the dataframe.
+    scenario_variable_df = aggregate_rows(scenario_variable_df, aggregation_dict)
+
     # Open the text file containing the variable dictionary to translate each variable name of Wiliam to the variable name in the IAMC format.
-    with open("../Conversion-Script/Create_Variable_Dict/variable_name_dict.txt", "r") as f:
+    with open(
+        "../Conversion-Script/Create_Variable_Dict/variable_name_dict.txt", "r"
+    ) as f:
         # Read the contents of the file
         variable_name_dict_str = f.read()
 
