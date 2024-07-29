@@ -67,12 +67,20 @@ def aggregate_subscript_variable_name(row, counter, existing_country_Wiliam_dict
     return row
 
 # Function to replace values and track missing ones
-def replace_and_track(value, variable_name_dict,missing_variable):
-    if value in variable_name_dict:
-        return variable_name_dict[value]
+def replace_and_track(row, variable_name_dict,missing_variable):
+
+    # Get the name translated if it exists. 
+    translation_name = variable_name_dict.get(row["Variable"], None)
+
+    if translation_name:
+        # Modify the row to give it the correct translation
+        row["Variable"] = translation_name
+        row["Translation"] = True
+        return row
     else:
-        missing_variable.append(value)
-        return value
+        # Add the missing variable to the list of untranslated variable. 
+        missing_variable.append(row["Variable"])
+        return row
 
 # Function to create the aggregations of each row
 def aggregate_rows(df, aggregations):
@@ -278,10 +286,17 @@ def main():
     # Create the list of missing variable.
     missing_variable = []
 
-    # Apply the function to the DataFrame column
-    scenario_variable_df["Variable"] = scenario_variable_df["Variable"].apply(
-        replace_and_track, args=(variable_name_dict, missing_variable)
+    # Create a new column for the selection of translated variable
+    scenario_variable_df['Translation'] = False
+
+    # Apply the translation of the variable name's column to respect the IAMC format
+
+    scenario_variable_df = scenario_variable_df.apply(
+        replace_and_track, args=(variable_name_dict, missing_variable,), axis=1
     )
+
+    # Remove the untranslated variable of the dataframe
+    scenario_variable_df = scenario_variable_df.loc[scenario_variable_df.Translation,:]
 
     # Open the text file containing the aggregation dictionary .
     aggregation_dict = open_dict("aggregation.txt")
@@ -294,6 +309,7 @@ def main():
         "The translation of ",
         len(missing_variable),
         " variables are missing. You can find all the translation in the file called new_variable_name_dict.txt")
+
     # Process the automatic translation of missing variables. 
     translation_helpers.create_automatic_translation(missing_variable)
     
