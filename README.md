@@ -15,21 +15,24 @@ To run correctly the code, you need to :
   To go back the command line is : cd ..
 - Run the following command in your terminal : pip install -r requirements.txt --user
   If this is not working, you need to download Python on your computer and relaunch the command.
-- Put the file that you want to translate in the folder File_To_Convert.
-- Execute the Convert_Wiliam_result_IAMC to translate your file by writing the following command line in the terminal : python Convert_Wiliam_result_IAMC-format.py
-  You need to be in the Conversion-Script directory to run the file.
-- If you want to convert other file, follow the previous instructions for each file. Add the file to folder File_To_Convert and execute the Convert_Wiliam's file.
+- Go on the Final_script folder by using the cd command. 
+- Put the file that you want to translate in the folder File_To_Convert create it if it does not exist.
+- Execute the translation.py file to translate your file by writing the following command line in the terminal : python translation.py
+If you want to create an automatic report of the scenario. you can run the following command: python translation.py --arguments report. 
+The translation.py file will create two files 
+- If you want to convert other file, follow the previous instructions for each file. Add the file to folder File_To_Convert and follow the previous step.
 - Once, you have translated on the file you want, you can run the merge_csv file with the same command line to merge all files that are in the Folder File_Converted with the command line:
   python Merge_csv.py
+
+- If you want to update the aggregation dictionary or the translation dict, you need to run the update_dict.py with the argument aggregation or variable according to the dict you want to modify.
+The command line is then python update_dict.py --arguments aggregations (variables)
 
 Contributions :
 
 If you want to contribute to the repository, please follow the following settings in VS Code settings:
-{ "editor.defaultFormatter": "esbenp.prettier-vscode",
-
+{
 "[python]": {
 "editor.formatOnSave": true,
 "editor.defaultFormatter": "charliermarsh.ruff"
 },
-"editor.formatOnPaste": true,
-"editor.formatOnSave": true}
+"editor.formatOnPaste": true}
