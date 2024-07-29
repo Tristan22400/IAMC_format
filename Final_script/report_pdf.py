@@ -12,7 +12,7 @@ class PDFReport(FPDF):
         # Move to the right
         self.cell(80)
         # Title
-        self.cell(30, 10, 'Report Scenario', 1, 0, 'C')
+        self.cell(50, 10, 'Report Scenario', 1, 0, 'C')
         # Line break
         self.ln(20)
 
