@@ -1,4 +1,5 @@
 import pprint
+import argparse
 import ast
 
 def check_brackets(s):
@@ -97,7 +98,7 @@ def check_capitalization(words, conjunctions):
     return valid_capitalization_bool
 
 
-def process_dictionary(data_dict):
+def process_values_dict(data_dict):
     """
     Checks and processes the values in a dictionary.
     """
@@ -142,17 +143,21 @@ def open_dict(dict_path):
     read_dict = ast.literal_eval(read_dict_str)
     return read_dict
 
-def check_and_merge_dicts(dict1, dict2):
+def check_and_merge_dicts(dict1, dict2, forced_update):
     # Find overlapping keys
     overlapping_keys = set(dict1.keys()) & set(dict2.keys())
 
     # Check if there are any differences in the overlapping keys
     for key in overlapping_keys:
         if dict1[key] != dict2[key]:
+
             print(f"Conflict found for key '{key}':")
             print(f" - Dict1 has {dict1[key]}")
             print(f" - Dict2 has {dict2[key]}")
-            return None  # Return None if there's a conflict
+
+            # Return None if there's a conflict and the update was not forced
+            if not forced_update:
+                return None
 
     # Merge the dictionaries if there are no conflicts
     merged_dict = dict1.copy()  # Start with a copy of the first dictionary
@@ -164,13 +169,13 @@ def write_dict(dict_path, name_dict):
     with open(dict_path, 'w') as f:
         pprint.pprint( name_dict, f)
 
-def main():
+def update_variable_dict(forced_update):
     # Read the dict file that contain the update of the translation dict
     new_variable_dict = open_dict('new_variable_name_dict.txt')
 
     # Check the format of the new variable to translate
-    correct_foramt_bool = process_dictionary(new_variable_dict)
-    if not correct_foramt_bool:
+    correct_values_format_bool = process_values_dict(new_variable_dict)
+    if not correct_values_format_bool:
         exit()
     
     current_variable_translation_dict_path = (
@@ -179,13 +184,134 @@ def main():
     # Read the current dictionary of translation variable
     current_variable_translation_dict = open_dict(current_variable_translation_dict_path)
 
-    updated_variable_translation_dict = check_and_merge_dicts(new_variable_dict, current_variable_translation_dict)
+    # Check that the submitted dict respect the IAMC format constraints and merge the dict
+    updated_variable_translation_dict = check_and_merge_dicts(new_variable_dict, current_variable_translation_dict, forced_update)
 
+    # Write the new dictionary if updated. 
     if updated_variable_translation_dict:
         write_dict(
             current_variable_translation_dict_path, updated_variable_translation_dict
         )
         print("Update of the translation dictionary done.")
 
+
+def process_keys_dict(data_dict):
+    # List of conjunctions and words that should not be capitalized
+    conjunctions = {"and", "or", "nor", "but", "so", "for", "yet", "of", "w/", "w/o"}
+    correct_format_bool = True
+    for key_list, value in data_dict.items():
+        for key in key_list: 
+            if isinstance(key, str):
+                # Check if the string contains only valid characters
+                if not is_valid_string(key):
+                    print(
+                        f"The key '{key}' associated with value '{value}' is not following IAMC format rules."
+                    )
+                    correct_format_bool = False
+
+                # Split the string into words using spaces and pipes as separators
+                key = remove_bracketed_parts(key)
+                words = value.split()
+                split_words = []
+                for word in words:
+                    split_words.extend(word.split("|"))
+
+                # Check the capitalization of words
+                if not check_capitalization(split_words, conjunctions):
+                    print(
+                        f"The key '{key}' associated with value '{value}' does not have all words written properly."
+                    )
+                    correct_format_bool = False
+    return correct_format_bool
+
+
+def check_existing_variables_aggregations():
+    current_aggregation_dict_path = (
+        "../Conversion-Script/Create_Variable_Dict/aggregation_dict.txt"
+    )
+
+    # Read the current dictionary of aggregations of variable.
+    current_aggregation_dict = open_dict(current_aggregation_dict_path)
+
+    current_variable_translation_dict_path = (
+        "../Conversion-Script/Create_Variable_Dict/variable_name_dict.txt"
+    )
+    # Read the current dictionary of translation variable
+    current_variable_translation_dict = open_dict(
+        current_variable_translation_dict_path
+    )
+
+
+    # Create the dictionary values into a set for fast membership checking
+    all_variables_translation_set = set(
+        val for val in current_variable_translation_dict.values()  
+    )
+    
+    all_variables_aggregation_set = set(
+        val for sublist in current_aggregation_dict.keys() for val in sublist
+    )
+
+    # Find elements not present using set difference
+    not_present_elements = (
+        all_variables_aggregation_set - all_variables_translation_set
+    )
+
+    if not_present_elements:
+        print(f"These elements are not present in the dictionary values: {not_present_elements}")
+    else:
+        print("All elements are present in the dictionary values.")
+
+
+def update_aggregation_dict(forced_update): 
+    # Read the dict file that contain the update of the translation dict
+    new_aggregation_dict = open_dict("new_aggregation_dict.txt")
+
+    # Check the format of the key and value of this new aggregation dict. 
+    correct_values_format_bool = process_values_dict(new_aggregation_dict)
+    correct_keys_format_bool = process_keys_dict(new_aggregation_dict)
+    print(correct_keys_format_bool, correct_values_format_bool)
+    # Stop the run if the IAMC format is not respected. 
+    if not correct_values_format_bool or not correct_keys_format_bool:
+        exit()
+
+
+    current_aggregation_dict_path = (
+        "../Conversion-Script/Create_Variable_Dict/aggregation_dict.txt"
+    )
+    
+    # Read the current dictionary of translation variable
+    current_aggregation_dict = open_dict(
+        current_aggregation_dict_path
+    )
+    
+    # Check that the submitted dict respect the IAMC format constraints and merge the dict
+    updated_variable_translation_dict = check_and_merge_dicts(
+        new_aggregation_dict, current_aggregation_dict, forced_update
+    )
+
+    # Write the new dictionary if updated.
+    if updated_variable_translation_dict:
+        write_dict(
+            current_aggregation_dict_path, updated_variable_translation_dict
+        )
+        print("Update of the translation dictionary done.")
+
+
 if __name__ == "__main__":
-    main()
+    # Parse the argument put in the command line.
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--arguments", help="insert argg")
+    args = parser.parse_args()
+    print(args.arguments)
+    if args.arguments == 'variables,forced':
+        update_variable_dict(True)
+    elif args.arguments == "variables":
+        update_variable_dict(False)
+    elif args.arguments == "aggregations,forced":
+        update_aggregation_dict(True)
+    elif args.arguments == "aggregations":
+        update_aggregation_dict(False)
+    elif args.arguments == "aggregations,check":
+        check_existing_variables_aggregations()
+    else: 
+        print("You need to put an argument to execute the update. See the ReadMe.")

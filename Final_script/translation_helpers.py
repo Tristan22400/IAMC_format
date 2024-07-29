@@ -95,13 +95,10 @@ def process_list(
 ):
     original_to_transformed = {}
 
-    
-
-    for row in missing_variable_list:
-        original_string = row[0]  # Get the original string
+    for variable in missing_variable_list:
         # Split the string by '|' to extract parts
-        parts = original_string.split("|")
-
+        parts = variable.split("|")
+        
         # Replace parts with dictionary values if they are keys in the dictionary
         transformed_parts = []
         for part in parts:
@@ -117,6 +114,7 @@ def process_list(
                 part = economy_dashboard_dict[part]
             
             transformed_parts.append(part)
+            
 
         # Reconstruct the string with transformed parts
         transformed_string = "|".join(transformed_parts)
@@ -128,7 +126,7 @@ def process_list(
         transformed_string = format_string(transformed_string, upper_word_list, vehicle_list)
 
         # Map the original string to the transformed string
-        original_to_transformed[original_string] = transformed_string
+        original_to_transformed[variable] = transformed_string
 
     return original_to_transformed
 
