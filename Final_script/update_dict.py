@@ -150,7 +150,7 @@ def check_and_merge_dicts(dict1, dict2, forced_update):
     # Check if there are any differences in the overlapping keys
     for key in overlapping_keys:
         if dict1[key] != dict2[key]:
-            
+
             print(f"Conflict found for key '{key}':")
             print(f" - Dict1 has {dict1[key]}")
             print(f" - Dict2 has {dict2[key]}")
@@ -207,7 +207,9 @@ if __name__ == "__main__":
         update_variable_dict(True)
     elif args.arguments == "variables":
         update_variable_dict(False)
-    elif args == 'aggregations':
-        update_aggregation_dict()
+    elif args == 'aggregations,forced':
+        update_aggregation_dict(True)
+    elif args == "aggregations":
+        update_aggregation_dict(False)
     else: 
         print("You need to put an argument to execute the update. See the ReadMe.")

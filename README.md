@@ -26,6 +26,8 @@ The translation.py file will create two files
 
 - If you want to update the aggregation dictionary or the translation dict, you need to run the update_dict.py with the argument aggregation or variable according to the dict you want to modify.
 The command line is then python update_dict.py --arguments aggregations (variables)
+If you want to change a variable that is already defined, you can force the update of both dictionaries by running the following command line. 
+python update_dict.py --arguments aggregations,forced (variables,forced)
 
 Contributions :
 
