@@ -1,4 +1,5 @@
 import pprint
+import argparse
 import ast
 
 def check_brackets(s):
@@ -142,17 +143,21 @@ def open_dict(dict_path):
     read_dict = ast.literal_eval(read_dict_str)
     return read_dict
 
-def check_and_merge_dicts(dict1, dict2):
+def check_and_merge_dicts(dict1, dict2, forced_update):
     # Find overlapping keys
     overlapping_keys = set(dict1.keys()) & set(dict2.keys())
 
     # Check if there are any differences in the overlapping keys
     for key in overlapping_keys:
         if dict1[key] != dict2[key]:
+            
             print(f"Conflict found for key '{key}':")
             print(f" - Dict1 has {dict1[key]}")
             print(f" - Dict2 has {dict2[key]}")
-            return None  # Return None if there's a conflict
+
+            # Return None if there's a conflict and the update was not forced
+            if not forced_update:
+                return None
 
     # Merge the dictionaries if there are no conflicts
     merged_dict = dict1.copy()  # Start with a copy of the first dictionary
@@ -164,7 +169,7 @@ def write_dict(dict_path, name_dict):
     with open(dict_path, 'w') as f:
         pprint.pprint( name_dict, f)
 
-def main():
+def update_variable_dict(forced_update):
     # Read the dict file that contain the update of the translation dict
     new_variable_dict = open_dict('new_variable_name_dict.txt')
 
@@ -179,13 +184,30 @@ def main():
     # Read the current dictionary of translation variable
     current_variable_translation_dict = open_dict(current_variable_translation_dict_path)
 
-    updated_variable_translation_dict = check_and_merge_dicts(new_variable_dict, current_variable_translation_dict)
+    # Check that the submitted dict respect the IAMC format constraints and merge the dict
+    updated_variable_translation_dict = check_and_merge_dicts(new_variable_dict, current_variable_translation_dict, forced_update)
 
+    # Write the new dictionary if updated. 
     if updated_variable_translation_dict:
         write_dict(
             current_variable_translation_dict_path, updated_variable_translation_dict
         )
         print("Update of the translation dictionary done.")
 
+def update_aggregation_dict(): 
+    print('test')
+
 if __name__ == "__main__":
-    main()
+    # Parse the argument put in the command line.
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--arguments", help="insert argg")
+    args = parser.parse_args()
+    print(args.arguments)
+    if args.arguments == 'variables,forced':
+        update_variable_dict(True)
+    elif args.arguments == "variables":
+        update_variable_dict(False)
+    elif args == 'aggregations':
+        update_aggregation_dict()
+    else: 
+        print("You need to put an argument to execute the update. See the ReadMe.")
