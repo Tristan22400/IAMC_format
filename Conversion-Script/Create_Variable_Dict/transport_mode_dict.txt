@@ -1,0 +1,11 @@
+{'AIR DOMESTIC': 'Domestic Aviation',
+ 'AIR INTERNATIONAL': 'International Aviation',
+ 'AIR INTRA EU': 'European Aviation',
+ 'BUS': 'Bus',
+ 'HDV': 'High Duty Vehicle',
+ 'LDV': 'Light Duty Vehicle',
+ 'MARINE': 'Navigation',
+ 'MDV': 'Medium Duty Vehicle',
+ 'MOTORCYCLES 2W 3W': '2W and 3W',
+ 'NMT': 'Bicycling and Walking',
+ 'RAIL': 'Rail'}
