@@ -83,8 +83,8 @@ def format_string(s, upper_word_list, vehicule_list):
 
     return result
 
-def process_csv(
-    input_file,
+def process_list(
+    missing_variable_list,
     IAMC_WILIAM_name_dict,
     energy_dict,
     rest_dict,
@@ -95,42 +95,40 @@ def process_csv(
 ):
     original_to_transformed = {}
 
-    # Open the CSV file and read it line by line
-    with open(input_file, mode="r") as file:
-        csv_reader = csv.reader(file)
+    
 
-        for row in csv_reader:
-            original_string = row[0]  # Get the original string
-            # Split the string by '|' to extract parts
-            parts = original_string.split("|")
+    for row in missing_variable_list:
+        original_string = row[0]  # Get the original string
+        # Split the string by '|' to extract parts
+        parts = original_string.split("|")
 
-            # Replace parts with dictionary values if they are keys in the dictionary
-            transformed_parts = []
-            for part in parts:
-                if IAMC_WILIAM_name_dict.get(part,None):
-                    part = IAMC_WILIAM_name_dict.get(part, None)
-                elif energy_dict.get(part, None):
-                    part = energy_dict[part]
-                elif rest_dict.get(part, None):
-                    part = rest_dict[part]
-                elif sectors_dict.get(part, None):
-                    part = sectors_dict[part]
-                elif economy_dashboard_dict.get(part, None):
-                    part = economy_dashboard_dict[part]
-                
-                transformed_parts.append(part)
+        # Replace parts with dictionary values if they are keys in the dictionary
+        transformed_parts = []
+        for part in parts:
+            if IAMC_WILIAM_name_dict.get(part,None):
+                part = IAMC_WILIAM_name_dict.get(part, None)
+            elif energy_dict.get(part, None):
+                part = energy_dict[part]
+            elif rest_dict.get(part, None):
+                part = rest_dict[part]
+            elif sectors_dict.get(part, None):
+                part = sectors_dict[part]
+            elif economy_dashboard_dict.get(part, None):
+                part = economy_dashboard_dict[part]
+            
+            transformed_parts.append(part)
 
-            # Reconstruct the string with transformed parts
-            transformed_string = "|".join(transformed_parts)
+        # Reconstruct the string with transformed parts
+        transformed_string = "|".join(transformed_parts)
 
-            # Move the word in the brackets at the end of the word.
-            transformed_string = move_crochets(transformed_string)
+        # Move the word in the brackets at the end of the word.
+        transformed_string = move_crochets(transformed_string)
 
-            # Transform the string to respect the IAMC format
-            transformed_string = format_string(transformed_string, upper_word_list, vehicle_list)
+        # Transform the string to respect the IAMC format
+        transformed_string = format_string(transformed_string, upper_word_list, vehicle_list)
 
-            # Map the original string to the transformed string
-            original_to_transformed[original_string] = transformed_string
+        # Map the original string to the transformed string
+        original_to_transformed[original_string] = transformed_string
 
     return original_to_transformed
 
@@ -145,10 +143,8 @@ def open_dict(dict_filename):
     return read_dict
 
 
-def main(): 
-
-    # File that should be read.
-    csv_file_path = "missing_variable.csv" 
+def create_automatic_translation(missing_variable_list): 
+ 
 
     # Open the text file containing the energy dictionary
     energy_dict = open_dict("energy_dict.txt")
@@ -163,55 +159,55 @@ def main():
 
 
     # Open the text file containing the dictionary for the economy dashboard subscript.
-    economy_dashboard_dict = open_dict("economy_dashboard.txt")
+    economy_dashboard_dict = open_dict("economy_dashboard_dict.txt")
 
     # List with the words in uppercase which will not be capitalized by the next functions
     upper_word_list = [
-    "CO2",
-    "CH4",
-    "N2O",
-    "PFC",
-    "SF6",
-    "HFC134a",
-    "HFC23",
-    "HFC32",
-    "HFC125",
-    "HFC143a",
-    "HFC152a",
-    "HFC227ea",
-    "HFC245ca",
-    "HFC43-10",
-    "HFC",
-    "w/o CCS",
-    "w/ CCS",
-    "PV",
-    "CSP",
-    "AFOLU",
-    "CO2eq",
-    "EROI",
-    "PV",
-    "CSP",
-    "ICE_gasoline",
-    "ICE_diesel",
-    "ICE_gas",
-    "ICE_LPG",
-    "BEV",
-    "PHEV",
-    "HEV",
-    "FCEV",
-    "EV",
-    "HPV",
-    "LMO",
-    "NMC622",
-    "NMC811",
-    "NCA",
-    "LFP",
-    "LDV",
-    "MDV",
-    "HDV",
-    "NMT",
-    "GDP",
-    "PPP",
+        "CO2",
+        "CH4",
+        "N2O",
+        "PFC",
+        "SF6",
+        "HFC134a",
+        "HFC23",
+        "HFC32",
+        "HFC125",
+        "HFC143a",
+        "HFC152a",
+        "HFC227ea",
+        "HFC245ca",
+        "HFC4310mee",
+        "HFC",
+        "w/o CCS",
+        "w/ CCS",
+        "PV",
+        "CSP",
+        "AFOLU",
+        "CO2eq",
+        "EROI",
+        "PV",
+        "CSP",
+        "ICE_gasoline",
+        "ICE_diesel",
+        "ICE_gas",
+        "ICE_LPG",
+        "BEV",
+        "PHEV",
+        "HEV",
+        "FCEV",
+        "EV",
+        "HPV",
+        "LMO",
+        "NMC622",
+        "NMC811",
+        "NCA",
+        "LFP",
+        "LDV",
+        "MDV",
+        "HDV",
+        "NMT",
+        "GDP",
+        "PPP",
     ]
     vehicle_list = ["gasoline", "gas", "diesel"]
 
@@ -220,8 +216,8 @@ def main():
     # Create a dict with Wiliam's name as key, IAMC's name as value
     IAMC_WILIAM_name_dict = data_name_df.set_index('WILIAM_variable')['IAMC_variable'].to_dict()
 
-    translation_dict = process_csv(
-        csv_file_path,
+    translation_dict = process_list(
+        missing_variable_list,
         IAMC_WILIAM_name_dict,
         energy_dict,
         rest_dict,
@@ -235,6 +231,3 @@ def main():
     with open("new_variable_name_dict.txt", "w") as f:
         pprint.pprint(translation_dict, f)
 
-
-if __name__ == "__main__":
-    main()

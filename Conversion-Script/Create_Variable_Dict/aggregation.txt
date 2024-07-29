@@ -1,0 +1,4 @@
+{
+    ('world_PE_by_commodity|PE_waste', 'world_PE_by_commodity|PE_solar'): 'Primary Energy|New',
+    ('C', 'D', 'E'): 'Y'
+}
