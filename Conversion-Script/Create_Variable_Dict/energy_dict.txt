@@ -17,6 +17,51 @@
  'PE_solar': 'Solar',
  'PE_waste': 'Waste',
  'PE_wind': 'Wind',
+ 'PROREF no process PE geothermal': 'Energy Transformation '
+                                    'Process|Geothermal|Geothermal',
+ 'PROREF no process PE hydropower': 'Energy Transformation '
+                                    'Process|Hydropower|Hydropower',
+ 'PROREF no process PE nuclear': 'Energy Transformation '
+                                 'Process|Nuclear|Nuclear',
+ 'PROREF no process PE oceanic': 'Energy Transformation '
+                                 'Process|Oceanic|Oceanic',
+ 'PROREF no process PE solar': 'Energy Transformation Process|Solar|Solar',
+ 'PROREF no process PE waste': 'Energy Transformation Process|Waste|Waste',
+ 'PROREF no process PE wind': 'Energy Transformation Process|Wind|Wind',
+ 'PROREF refinery bio': 'Energy Transformation Process|Liquids and '
+                        'Gases|Biomass',
+ 'PROREF refinery coal': 'Energy Transformation Process|Liquids and Gases|Coal',
+ 'PROREF refinery oil': 'Energy Transformation Process|Liquids and Gases|Oil',
+ 'PROREF transformation PE coal 2 TI solid fossil': 'Energy Transformation '
+                                                    'Process|Solids|Fossil',
+ 'PROREF transformation PE forestry products 2 TI solid bio': 'Energy '
+                                                              'Transformation '
+                                                              'Process|Solids|Biomass',
+ 'PROREF transformation PE natural gas 2 TI gas fossil': 'Energy '
+                                                         'Transformation '
+                                                         'Process|Gas '
+                                                         'Fossil|Natural Gas',
+ 'PROREF transformation PE natural gas 2 TI hydrogen': 'Energy Transformation '
+                                                       'Process|Hydrogen '
+                                                       'Gas|Natural Gas',
+ 'PROSUP P2H electric boiler': 'Heating|Electric Boiler|Electricity',
+ 'PROSUP P2H heat pump': 'Heating|Heat Pump|Electricity',
+ 'PROSUP hydrogen 2 gas': 'Gas|Hydrogen Syngas',
+ 'PROSUP hydrogen 2 liquid': 'Liquid|Hydrogen Synfuel',
+ 'PROSUP no process TO hydrogen': 'Hydrogen|Hydrogen',
+ 'PROSUP no process TO solid bio': 'Solids|Biomass|Solids|Biomass',
+ 'PROSUP no process TO solid fossil': 'Solids|Fossil|Solids|Fossil',
+ 'PROSUP sector energy own consumption elec': 'Industry|Energy|Consumption|Electricity',
+ 'PROSUP sector energy own consumption gas': 'Industry|Energy|Consumption|Gas',
+ 'PROSUP sector energy own consumption heat': 'Industry|Energy|Consumption|Heat',
+ 'PROSUP sector energy own consumption liquid': 'Industry|Energy|Consumption|Liquids',
+ 'PROSUP sector energy own consumption solid fossil': 'Industry|Energy|Consumption|Solids|Fossil',
+ 'PROSUP storage losses elec': 'Electricity|Losses|Storage',
+ 'PROSUP storage losses gas': 'Gas|Losses|Storage',
+ 'PROSUP storage losses heat': 'Heat|Losses|Storage',
+ 'PROSUP transmission losses elec': 'Electricity|Losses|Transmission',
+ 'PROSUP transmission losses gas': 'Gas|Losses|Transmission',
+ 'PROSUP transmission losses heat': 'Heat|Losses|Transmission',
  'PROTRA_CHP_gas_fuels': 'Electricity and Heat|Gas fuels|w/o CCS',
  'PROTRA_CHP_gas_fuels_CCS': 'Electricity and Heat|Gas fuels|w/ CCS',
  'PROTRA_CHP_geothermal_DEACTIVATED': 'Electricity and '
