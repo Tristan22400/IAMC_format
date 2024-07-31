@@ -1,7 +1,7 @@
-{'Al W': 'Aluminium',
- 'Coal W': 'Coal',
- 'Cu W': 'Copper',
- 'Fe W': 'Iron',
- 'Gas W': 'Gas',
- 'Ni W': 'Nickel',
- 'Oil W': 'Oil'}
+{'Al_W': 'Aluminum',
+ 'Coal_W': 'Coal',
+ 'Cu_W': 'Copper',
+ 'Fe_W': 'Iron',
+ 'Gas_W': 'Gas',
+ 'Ni_W': 'Nickel',
+ 'Oil_W': 'Oil'}
