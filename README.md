@@ -34,6 +34,14 @@ python update_dict.py --arguments aggregations,forced (variables,forced)
 - If you want to check that all the variables in the aggregations dict are correct then you need to run the update_dict.py with the following command. 
 python update_dict.py --arguments aggregations,check
 
+The Visualization folder
+
+This folder contains a lot of examples of usual plot that you could want to do. You just need to go on the graph you want to do and select among the type of graph available. 
+If the ones, you are searching for is not present in the documentation, you can go to the documentation of pyam. 
+https://pyam-iamc.readthedocs.io/en/stable/
+
+The matplotlib documentation can also be consulted if you want to change the esthetic of the plot. https://pyam-iamc.readthedocs.io/en/stable/
+
 Contributions :
 
 If you want to contribute to the repository, please follow the following settings in VS Code settings:
