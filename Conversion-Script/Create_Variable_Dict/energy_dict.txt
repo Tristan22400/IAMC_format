@@ -43,10 +43,16 @@
  'PROREF_transformation_PE_natural_gas_2_TI_hydrogen': 'Energy Transformation '
                                                        'Process|Hydrogen '
                                                        'Gas|Natural Gas',
+ 'PROSTO_PHS': 'Storage|Pumped Hydro Storage',
+ 'PROSTO_STATIONARY_BATTERIES': 'Storage|Battery Capacity|Utility-scale '
+                                'Battery',
+ 'PROSTO_V2G': 'Storage|Battery Capacity|Electric Vehicle',
+ 'PROSUP_DSM': 'Demand-Side Management',
  'PROSUP_P2H_electric_boiler': 'Heating|Electric Boiler|Electricity',
  'PROSUP_P2H_heat_pump': 'Heating|Heat Pump|Electricity',
+ 'PROSUP_elec_2_hydrogen': 'Hydrogen|Electricity',
  'PROSUP_hydrogen_2_gas': 'Gas|Hydrogen Syngas',
- 'PROSUP_hydrogen_2_liquid': 'Liquid|Hydrogen Synfuel',
+ 'PROSUP_hydrogen_2_liquid': 'Liquids|Hydrogen Synfuel',
  'PROSUP_no_process_TO_hydrogen': 'Hydrogen|Hydrogen',
  'PROSUP_no_process_TO_solid_bio': 'Solids|Biomass|Solids|Biomass',
  'PROSUP_no_process_TO_solid_fossil': 'Solids|Fossil|Solids|Fossil',
@@ -100,7 +106,7 @@
  'PROTRA_PP_wind_offshore': 'Electricity|Wind|Offshore',
  'PROTRA_PP_wind_onshore': 'Electricity|Wind|Onshore',
  'PROTRA_blending_gas_fuels': 'Gas Fuels',
- 'PROTRA_blending_liquid_fuels': 'Liquid Fuels',
+ 'PROTRA_blending_liquid_fuels': 'Liquids Fuels',
  'PROTRA_no_process_TI_hydrogen': 'Hydrogen',
  'PROTRA_no_process_TI_solid_bio': 'Solids|Biomass',
  'PROTRA_no_process_TI_solid_fossil': 'Solids|Fossils',

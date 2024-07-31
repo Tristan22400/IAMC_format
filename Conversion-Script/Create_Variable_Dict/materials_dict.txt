@@ -1,4 +1,4 @@
-{'Al_W': 'Aluminum',
+{'Al_W': 'Aluminium',
  'Coal_W': 'Coal',
  'Cu_W': 'Copper',
  'Fe_W': 'Iron',
