@@ -3,4 +3,4 @@
  'GOVERNMENT_W': 'Economic Final Demand|Government',
  'GROSS_FIXED_CAPITAL_FORMATION_W': 'Economic Final Demand|Gross Investment',
  'INVENTORY_W': 'Economic Final Demand|Inventory',
- 'NON_PROFIT_W': 'Economic Final Demand|Non profit'}
+ 'NON_PROFIT_W': 'Economic Final Demand|Non Profit'}

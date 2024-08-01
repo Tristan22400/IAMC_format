@@ -20,13 +20,13 @@
  'DB_GVA_EXTRACTION': 'Value Added|Industry|Mining|Extraction',
  'DB_GVA_INDUSTRY': 'Value Added|Industry',
  'DB_GVA_SERVICES': 'Value Added|Services',
- 'DB_GVA_TAXES_PRODUCTS_TOTAL': 'Value Added|Taxes on products',
+ 'DB_GVA_TAXES_PRODUCTS_TOTAL': 'Value Added|Taxes on Products',
  'DB_HH_CONSUMPTION': 'Expenditure|Household',
  'DB_HH_CONSUMPTION_COICOP': 'Households|Consumption|COICOP',
- 'DB_HH_CONSUMPTION_COICOP_NOMINAL': 'Households|Consumption nominal|COICOP',
- 'DB_HH_DISPOSABLE_INCOME': 'Revenues|Households|Disposable income',
- 'DB_HH_DISPOSABLE_INCOME_NOMINAL': 'Revenues|Households|Disposable '
-                                    'income|Nominal',
+ 'DB_HH_CONSUMPTION_COICOP_NOMINAL': 'Households|Consumption Nominal|COICOP',
+ 'DB_HH_DISPOSABLE_INCOME': 'Revenues|Households|Disposable Income',
+ 'DB_HH_DISPOSABLE_INCOME_NOMINAL': 'Revenues|Households|Disposable Income '
+                                    'Nominal',
  'DB_HH_SAVINGS': 'Households|Savings|Real',
  'DB_HH_SAVINGS_NOMINAL': 'Households|Savings',
  'DB_IMPORTS': 'Trade|Value|Imports',
@@ -35,6 +35,6 @@
  'DB_NET_OPERATING_SURPLUS': 'Value Added|Net Operating Surplus',
  'DB_OTHER_FINAL_DEMAND': 'Final Demand|Other',
  'DB_OUTPUT': 'Output',
- 'DB_TAXES_PRODUCTION': 'Value Added|Taxes on production',
+ 'DB_TAXES_PRODUCTION': 'Value Added|Taxes on Production',
  'DB_TRADE_BALANCE': 'Trade|Value|Balance',
  'DB_UNEMPLOYMENT_RATE': 'Unemployment|Rate'}
