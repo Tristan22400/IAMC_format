@@ -22,17 +22,19 @@ If you want to create an automatic report of the scenario. you can run the follo
 The translation.py file will create two files 
 - If you want to convert other file, follow the previous instructions for each file. Add the file to folder File_To_Convert and follow the previous step.
 - Once, you have translated on the file you want, you can run the merge_csv file with the same command line to merge all files that are in the Folder File_Converted with the command line:
-  python Merge_csv.py
+python Merge_csv.py
 
 
 UPDATE and CHECK of the different dictionaries. 
 
 - If you want to update the aggregation dictionary or the translation dict, you need to run the update_dict.py with the argument aggregation or variable according to the dict you want to modify.
-The command line is then python update_dict.py --arguments aggregations (variables)
+The command line is then python update_dict.py --arguments aggregations  or  python update_dict.py --arguments variables.
 - If you want to change a variable that is already defined, you can force the update of both dictionaries by running the following command line. 
-python update_dict.py --arguments aggregations,forced (variables,forced)
-- If you want to check that all the variables in the aggregations dict are correct then you need to run the update_dict.py with the following command. 
+python update_dict.py --arguments aggregations,forced or python update_dict.py --arguments variables,forced
+- If you want to update without overwriting then you need to run the update_dict.py with the following command. 
 python update_dict.py --arguments aggregations,check
+
+You should know that the update even forced is only possible if the naming of the variable are correct. 
 
 The Visualization folder
 

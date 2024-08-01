@@ -1,0 +1,4 @@
+{'CIGS': 'CIGS',
+ 'C_Si_mono': 'C Si Mono',
+ 'C_Si_poly': 'C Si Poly',
+ 'CdTe': 'CdTe'}
