@@ -2,6 +2,54 @@ import pprint
 import argparse
 import ast
 
+upper_word_list = [
+    "CO2",
+    "CO2eq",
+    "CH4",
+    "N2O",
+    "PFC",
+    "SF6",
+    "HFC134a",
+    "HFC23",
+    "HFC32",
+    "HFC125",
+    "HFC143a",
+    "HFC152a",
+    "HFC227ea",
+    "HFC245ca",
+    "HFC4310mee",
+    "CO2eq[per capita]",
+    "HFC",
+    "w/o CCS",
+    "w/ CCS",
+    "w/",
+    "w/o",
+    "CCS",
+    "PV",
+    "CSP",
+    "AFOLU",
+    "AFOFI",
+    "CO2eq",
+    "EROI",
+    "ESOI",
+    "PV",
+    "CSP",
+    "LMO",
+    "NMC622",
+    "NMC811",
+    "NCA",
+    "LFP",
+    "LDV",
+    "MDV",
+    "HDV",
+    "NMT",
+    "GDP",
+    "PPP",
+    "COICOP",
+    "CIGS",
+    "CdTe",
+]
+
 def check_brackets(s):
     """
     Checks that a string contains no hook or has a balanced pair of one open
@@ -36,8 +84,8 @@ def is_valid_string(s):
     """
     valid_string_bool = True
     for char in s:
-        if not (char.isalnum() or char in " |[]"):
-            print('This character is not authorized in the IAMC Format: ', char)
+        if not (char.isalnum() or char in " |[]-/+"): # Need to remove _ for testing only
+            print('This character is not authorized in the IAMC Format: ', char, ' in ', s)
             valid_string_bool = False
     # Check for spaces before or after each pipe
     if " |" in s or "| " in s:
@@ -80,11 +128,17 @@ def remove_bracketed_parts(s):
 
     return "".join(result)
 
+def has_number_or_dash(s):
+    """
+    Check for any digit or dash in the string
+    """
+    return any(char.isdigit() or char == '-' for char in s)
 
 def check_capitalization(words, conjunctions):
     """
     Checks that each word is capitalized unless it is a conjunction.
     """
+
     valid_capitalization_bool = True
     for word in words:
         if word.lower() in conjunctions:
@@ -92,8 +146,12 @@ def check_capitalization(words, conjunctions):
                 print("This word should be in lowercase: ", word)
                 valid_capitalization_bool = False
         else:
-            if word != word.capitalize():
-                print("This word should be capitalized: ", word)
+            if has_number_or_dash(word): 
+                continue
+            elif word in upper_word_list: 
+                continue
+            elif word != word.capitalize():
+                print("This word should be capitalized or added to the upper word list: ", word)
                 valid_capitalization_bool = False
     return valid_capitalization_bool
 
@@ -103,7 +161,7 @@ def process_values_dict(data_dict):
     Checks and processes the values in a dictionary.
     """
     # List of conjunctions and words that should not be capitalized
-    conjunctions = {"and", "or", "nor", "but", "so", "for", "yet", "of", "w/", "w/o"}
+    conjunctions = {"and", "or", "nor", "but", "so", "for", "yet", "of", "w/", "w/o", "on"}
     correct_format_bool = True
     for key, value in data_dict.items():
         if isinstance(value, str):
@@ -179,7 +237,7 @@ def update_variable_dict(forced_update):
         exit()
     
     current_variable_translation_dict_path = (
-        "../Conversion-Script/Create_Variable_Dict/variable_name_dict.txt"
+        "../Create_Variable_Dict/variable_name_dict.txt"
     )
     # Read the current dictionary of translation variable
     current_variable_translation_dict = open_dict(current_variable_translation_dict_path)
@@ -227,14 +285,14 @@ def process_keys_dict(data_dict):
 
 def check_existing_variables_aggregations():
     current_aggregation_dict_path = (
-        "../Conversion-Script/Create_Variable_Dict/aggregation_dict.txt"
+        "../Create_Variable_Dict/aggregation_dict.txt"
     )
 
     # Read the current dictionary of aggregations of variable.
     current_aggregation_dict = open_dict(current_aggregation_dict_path)
 
     current_variable_translation_dict_path = (
-        "../Conversion-Script/Create_Variable_Dict/variable_name_dict.txt"
+        "../Create_Variable_Dict/variable_name_dict.txt"
     )
     # Read the current dictionary of translation variable
     current_variable_translation_dict = open_dict(
@@ -276,7 +334,7 @@ def update_aggregation_dict(forced_update):
 
 
     current_aggregation_dict_path = (
-        "../Conversion-Script/Create_Variable_Dict/aggregation_dict.txt"
+        "../Create_Variable_Dict/aggregation_dict.txt"
     )
     
     # Read the current dictionary of translation variable
@@ -314,4 +372,4 @@ if __name__ == "__main__":
     elif args.arguments == "aggregations,check":
         check_existing_variables_aggregations()
     else: 
-        print("You need to put an argument to execute the update. See the ReadMe.")
+        print("You need to put a correct argument to execute the update. See the ReadMe.")
