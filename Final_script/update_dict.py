@@ -223,9 +223,20 @@ def check_and_merge_dicts(dict1, dict2, forced_update):
     return merged_dict
 
 def write_dict(dict_path, name_dict): 
-    # Save dictionary with pprint
-    with open(dict_path, 'w') as f:
-        pprint.pprint( name_dict, f)
+    
+    # Write the dictionary to a text file
+    with open(dict_path, "w") as file:
+        
+        # Start with the opening curly brace
+        file.write("{\n")
+        
+        # Write each key-value pair on a new line with single quotes
+        for key, value in name_dict.items():
+            file.write(f"    '{key}': '{value}',\n")
+        
+        # End with the closing curly brace
+        file.write("}\n")
+        
 
 def update_variable_dict(forced_update):
     # Read the dict file that contain the update of the translation dict
