@@ -1,0 +1,12 @@
+{'CROPLAND_IRRIGATED': 'Cropland|Irrigated',
+ 'CROPLAND_RAINFED': 'Cropland|Rainfed',
+ 'FOREST_MANAGED': 'Forest|Managed',
+ 'FOREST_PLANTATIONS': 'Forest|Forestry|Harvested Area',
+ 'FOREST_PRIMARY': 'Forest|Natural Forest',
+ 'GRASSLAND': 'Grassland',
+ 'OTHER_LAND': 'Other',
+ 'SHRUBLAND': 'Shrubland',
+ 'SNOW_ICE_WATERBODIES': 'Snow and Ice Land',
+ 'SOLAR_LAND': 'Built-up Area|Solar',
+ 'URBAN_LAND': 'Built-up Area',
+ 'WETLAND': 'Water Ecosystems|Wetlands'}

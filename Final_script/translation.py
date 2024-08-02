@@ -9,6 +9,7 @@ import argparse
 import translation_helpers
 
 
+
 def get_last_added_file(folder_path):
     # Get a list of all files in the folder
     files = os.listdir(folder_path)
@@ -122,7 +123,7 @@ def aggregate_rows(df, aggregations):
 
 def open_dict(dict_filename):
     # Open the text file containing the dictionary
-    with open("../Conversion-Script/Create_Variable_Dict/" + dict_filename, "r") as f:
+    with open("../Create_Variable_Dict/" + dict_filename, "r") as f:
         # Read the contents of the file
         read_dict_str = f.read()
 
@@ -376,7 +377,6 @@ def main():
 
     # Process the automatic translation of missing variables. 
     translation_helpers.create_automatic_translation(missing_variable)
-    
 
     # Write the new excel file in the File_Converted folder
     folder_file_converted = os.path.join(folder_path, folder_name_converted)

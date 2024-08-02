@@ -1,0 +1,7 @@
+{'Al_W': 'Aluminium',
+ 'Coal_W': 'Coal',
+ 'Cu_W': 'Copper',
+ 'Fe_W': 'Iron',
+ 'Gas_W': 'Gas',
+ 'Ni_W': 'Nickel',
+ 'Oil_W': 'Oil'}
