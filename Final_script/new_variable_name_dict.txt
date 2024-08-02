@@ -1,5 +1,5 @@
 {
-    'world_PE_by_commodity|PE_agriculture_product': 'Primary Energy|PE_agriculture_product',
+    'world_PE_by_commodity|PE_agriculture_product': 'world_PE_by_commodity|PE_agriculture_product',
     'total_PE_by_region2': 'total_PE_by_region2',
     'total_PE_by_region_1': 'total_PE_by_region_1',
 }
