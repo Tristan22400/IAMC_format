@@ -1,7 +1,6 @@
 {'PROREF_no_process_PE_geothermal': 'Energy Transformation '
                                     'Process|Geothermal|Geothermal',
- 'PROREF_no_process_PE_hydropower': 'Energy Transformation '
-                                    'Process|Hydropower|Hydropower',
+ 'PROREF_no_process_PE_hydropower': 'Energy Transformation Process|Hydro|Hydro',
  'PROREF_no_process_PE_nuclear': 'Energy Transformation '
                                  'Process|Nuclear|Nuclear',
  'PROREF_no_process_PE_oceanic': 'Energy Transformation Process|Ocean|Ocean',
