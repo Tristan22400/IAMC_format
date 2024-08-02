@@ -82,11 +82,8 @@ def format_string(s, upper_word_list):
 
 def process_list(
     missing_variable_list,
-    energy_dict,
-    rest_dict,
-    sectors_dict,
-    economy_dashboard_dict,
-    upper_word_list,
+    dict_list,
+    upper_word_list
 ):
     original_to_transformed = {}
 
@@ -97,16 +94,13 @@ def process_list(
         # Replace parts with dictionary values if they are keys in the dictionary
         transformed_parts = []
         for part in parts:
-            if energy_dict.get(part, None):
-                part = energy_dict[part]
-            elif rest_dict.get(part, None):
-                part = rest_dict[part]
-            elif sectors_dict.get(part, None):
-                part = sectors_dict[part]
-            elif economy_dashboard_dict.get(part, None):
-                part = economy_dashboard_dict[part]
+            subscript = part
+            for dict_variariables in dict_list:
+                if dict_variariables.get(part, None):
+                    subscript = dict_variariables[part]
+        
             
-            transformed_parts.append(part)
+            transformed_parts.append(subscript)
             
 
         # Reconstruct the string with transformed parts
@@ -137,20 +131,58 @@ def open_dict(dict_filename):
 def create_automatic_translation(missing_variable_list): 
  
 
-    # Open the text file containing the energy dictionary
-    energy_dict = open_dict("energy_dict.txt")
+    # Open the text file containing the age cohort dictionary
+    age_cohort_dict = open_dict("age_cohort_dict.txt")
 
+    # Open the text file containing the COICOP dict
+    COICOP_dict = open_dict("COICOP_dict.txt")
 
-    # Open the text file containing the rest dictionary
-    rest_dict = open_dict("rest_dict.txt")
+    # Open the text file containing the economy dashboard dict
+    economy_dashboard_dict = open_dict("economy_dashboard_dict.txt")
 
+    # Open the text file containing the ev chargers dict
+    ev_chargers_dict = open_dict("ev_chargers_dict.txt")
+
+    # Open the text file containing the final demand dict
+    final_demand_dict = open_dict("final_demand_dict.txt")
+
+    # Open the text file containing the GHG dict
+    GHG_dict = open_dict("GHG_dict.txt")
+
+    # Open the text file containing the households demography dict
+    households_demography_dict = open_dict("households_demography_dict.txt")
+
+    # Open the text file containing the land dict
+    land_dict = open_dict("land_dict.txt")
+
+    # Open the text file containing the materials W dict
+    materials_W_dict = open_dict("materials_W_dict.txt")
+
+    # Open the text file containing the NRG Commodities dict
+    NRG_Commodities_dict = open_dict("NRG_Commodities_dict.txt")
+
+    # Open the text file containing the NRG_Pro_dict
+    NRG_Commodities_dict = open_dict("NRG_Commodities_dict.txt")
+
+    # Open the text file containing the ore grade dict
+    ore_grade_dict = open_dict("ore_grade_dict.txt")
+
+    # Open the text file containing the pprofile dict
+    pprofile_dict = open_dict("pprofile_dict.txt")
+
+    # Open the text file containing the pv subtech dict
+    pv_subtech_dict = open_dict("pv_subtech_dict.txt")
 
     # Open the text file containing the sectors dictionary
     sectors_dict = open_dict("sectors_dict.txt")
 
+    # Open the text file containing the sex dict
+    transport_mode_dict = open_dict("transport_mode_dict.txt")
 
-    # Open the text file containing the dictionary for the economy dashboard subscript.
-    economy_dashboard_dict = open_dict("economy_dashboard_dict.txt")
+    # Open the text file containing the transport_power_train_dict
+    transport_power_train_dict = open_dict("transport_power_train_dict.txt")
+
+    dict_lict = [age_cohort_dict, COICOP_dict, economy_dashboard_dict, ev_chargers_dict, final_demand_dict, GHG_dict, households_demography_dict, land_dict, materials_W_dict, NRG_Commodities_dict]
 
     # List with the words in uppercase which will not be capitalized by the next functions
     upper_word_list = update_dict.upper_word_list
@@ -159,11 +191,8 @@ def create_automatic_translation(missing_variable_list):
     # Process the variables not translated. 
     new_variable_name_dict = process_list(
         missing_variable_list,
-        energy_dict,
-        rest_dict,
-        sectors_dict,
-        economy_dashboard_dict,
-        upper_word_list,
+        dict_lict,
+        update_dict.upper_word_list
     )
     
     # Write the dictionary to a text file
