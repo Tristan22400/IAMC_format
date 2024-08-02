@@ -19,10 +19,16 @@ To run correctly the code, you need to :
 - Put the file that you want to translate in the folder File_To_Convert create it if it does not exist.
 - Execute the translation.py file to translate your file by writing the following command line in the terminal : python translation.py
 If you want to create an automatic report of the scenario. you can run the following command: python translation.py --arguments report. 
-The translation.py file will create two files 
-- If you want to convert other file, follow the previous instructions for each file. Add the file to folder File_To_Convert and follow the previous step.
-- Once, you have translated on the file you want, you can run the merge_csv file with the same command line to merge all files that are in the Folder File_Converted with the command line:
-python Merge_csv.py
+
+
+The execution of translation.py file will create three files at least: 
+- The file of the translated variable with the data called scenario_name_converted.csv
+- The variable_name_change_dict.txt which are giving you a dictionary which associated all the variable in Wiliam that are not translated with their translation if they are in the Variable_IAMC.xlsx otherwise it shows the name in Wiliam. It corresponds to only variables not translated and not the subscript added.
+- The new_variable_name_dict.txt which are giving you a dictionary which associated all the variables gather with the subscripts to the variable's name of Wiliam gather with the subscripts translated to IAMC_format. The names of Wiliam's variable are not translated. 
+
+If you want to translate the names of variables in Wiliam, you can change it manually or you can change automacally with the variable_name_change_dict.txt by running the following command line. python translation_helpers.py
+
+If you want to convert other file, follow the previous instructions for each file. Add the file to folder File_To_Convert and follow the previous step.
 
 
 UPDATE and CHECK of the different dictionaries. 
@@ -35,6 +41,8 @@ python update_dict.py --arguments aggregations,forced or python update_dict.py -
 python update_dict.py --arguments aggregations,check
 
 You should know that the update even forced is only possible if the naming of the variable are correct. 
+
+You can also use the translation_helpers to change only the variable 
 
 The Visualization folder
 
