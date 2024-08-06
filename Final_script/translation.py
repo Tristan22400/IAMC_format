@@ -37,11 +37,6 @@ def create_folder_if_not_exists(folder_name):
     # Get current folder
     folder_path = os.getcwd()
 
-    try:
-        os.makedirs("pip")
-        print("DONE")
-    except FileExistsError:
-        pass
     if not os.path.exists(os.path.join(folder_path, folder_name)):
         os.makedirs(folder_name)
         print("Folder '{}' created.".format(folder_name))

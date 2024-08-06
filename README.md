@@ -11,10 +11,10 @@ To run correctly the code, you need to :
 
 - Export dataset with the Vensim application in csv or excel. You need to click on : On a separate colum in the export options.
 - Extract the github repository on your computer.
-- Open a terminal and go the Conversion-Script directory to move in the terminal, you can use the command line: cd filename
+- Open a terminal and go the directory of the project to move in the terminal, you can use the command line: cd filename
   To go back the command line is : cd ..
-- Run the following command in your terminal : pip install -r requirements.txt --user
-  If this is not working, you need to download Python on your computer and relaunch the command.
+- Run the following command in your terminal : conda env create -f environment.yml
+
 - Go on the Final_script folder by using the cd command. 
 - Put the file that you want to translate in the folder File_To_Convert create it if it does not exist.
 - Execute the translation.py file to translate your file by writing the following command line in the terminal : python translation.py
