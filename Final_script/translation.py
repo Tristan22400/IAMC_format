@@ -421,16 +421,14 @@ def main():
         scenario_df = pyam.IamDataFrame(
             os.path.join(folder_file_converted, filename)
     )
-         # This defines the model and scenario used for the report
-        args = dict(model="WILIAM", scenario=scenario)
-
-        
-        create_report(scenario_df, args)
     except Exception:
         print("ERROR opening the file with results in IAMC format")
         exit()
-    
-   
+
+    # This defines the model and scenario used for the report
+    args = dict(model="WILIAM", scenario=scenario)
+
+    create_report(scenario_df, args)
     
     print("Report's creation in process")
     
