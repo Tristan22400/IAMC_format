@@ -118,12 +118,15 @@ def aggregate_rows(df, aggregations):
 
 def open_dict(dict_filename):
     # Open the text file containing the dictionary
-    with open("../Create_Variable_Dict/" + dict_filename, "r") as f:
-        # Read the contents of the file
-        read_dict_str = f.read()
+    try: 
+        with open("../Create_Variable_Dict/" + dict_filename, "r") as f:
+            # Read the contents of the file
+            read_dict_str = f.read()
 
-    # Convert the string representation of the dictionary back to a dictionary object
-    read_dict = ast.literal_eval(read_dict_str)
+        # Convert the string representation of the dictionary back to a dictionary object
+        read_dict = ast.literal_eval(read_dict_str)
+    except Exception:
+        read_dict = dict()
     return read_dict
 
 def create_report(scenario_df, args):
@@ -418,15 +421,16 @@ def main():
         scenario_df = pyam.IamDataFrame(
             os.path.join(folder_file_converted, filename)
     )
-    except:
+         # This defines the model and scenario used for the report
+        args = dict(model="WILIAM", scenario=scenario)
+
+        
+        create_report(scenario_df, args)
+    except Exception:
         print("ERROR opening the file with results in IAMC format")
         exit()
     
-    # 3. This defines the model and scenario used for the report
-    args = dict(model="WILIAM", scenario=scenario)
-
-    
-    create_report(scenario_df, args)
+   
     
     print("Report's creation in process")
     

@@ -200,25 +200,25 @@ def open_dict(dict_path):
     read_dict = ast.literal_eval(read_dict_str)
     return read_dict
 
-def check_and_merge_dicts(dict1, dict2, forced_update):
+def check_and_merge_dicts(new_dict, current_dict, forced_update):
     # Find overlapping keys
-    overlapping_keys = set(dict1.keys()) & set(dict2.keys())
+    overlapping_keys = set(new_dict.keys()) & set(current_dict.keys())
 
     # Check if there are any differences in the overlapping keys
     for key in overlapping_keys:
-        if dict1[key] != dict2[key]:
+        if new_dict[key] != current_dict[key]:
 
             print(f"Conflict found for key '{key}':")
-            print(f" - Dict1 has {dict1[key]}")
-            print(f" - Dict2 has {dict2[key]}")
+            print(f" - New Dict has {new_dict[key]}")
+            print(f" - Current Dict has {current_dict[key]}")
 
             # Return None if there's a conflict and the update was not forced
             if not forced_update:
                 return None
 
     # Merge the dictionaries if there are no conflicts
-    merged_dict = dict1.copy()  # Start with a copy of the first dictionary
-    merged_dict.update(dict2)  # Update it with the second dictionary
+    merged_dict = current_dict.copy()  # Start with a copy of the current dictionary
+    merged_dict.update(new_dict)  # Update it with the new dictionary
     return merged_dict
 
 def write_dict(dict_path, name_dict): 
