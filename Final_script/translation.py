@@ -261,9 +261,8 @@ def main():
 
     # Remove duplicated rows in the file. 
     scenario_variable_df = scenario_variable_df.drop_duplicates()
+    
     # Rename the column of the file
-
-
     columns = scenario_variable_df.columns.str.replace("Unnamed:", "Subscript")
     columns = columns.str.replace(".", " ")
 
@@ -361,13 +360,13 @@ def main():
     # Remove the untranslated variable of the dataframe
     scenario_variable_df = scenario_variable_df.loc[scenario_variable_df.Translation,:]
 
-    # Open the text file containing the aggregation dictionary .
+    # Open the text file containing the aggregation dictionary
     aggregation_dict = open_dict("aggregation_dict.txt")
 
-    # Create the aggregations rows in the dataframe.
+    # Create the aggregations rows in the dataframe
     scenario_variable_df = aggregate_rows(scenario_variable_df, aggregation_dict)
 
-    # Create the path for the file containing the missing variable.
+    # Create the path for the file containing the missing variable
     print(
         "The translation of ",
         len(missing_variable),
@@ -400,7 +399,7 @@ def main():
     # Remove duplicate rows
     scenario_variable_df.drop_duplicates(subset=["Region", "Variable", "Unit"], inplace=True)
 
-    # Write the following dataframe to excel
+    # Write the following dataframe to excel or CSV
     if (
         splited_filename_with_extension[1] == ".xls"
         or splited_filename_with_extension[1] == ".xlsx"
