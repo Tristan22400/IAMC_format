@@ -1,4 +1,5 @@
-# This file defines the class TrieNode to efficiently search a variable in IAMC format files. This class follows the logics of Trie (tree data structure)
+# This file defines the class TrieNode to efficiently search a variable in IAMC format files.
+# This class follows the logics of Trie (tree data structure)
 
 class TrieNode:
     """A node in the Trie structure."""

@@ -14,7 +14,7 @@ def get_last_added_file(folder_path):
     # Get a list of all files in the folder
     files = os.listdir(folder_path)
 
-    # Filter Excel files
+    # Filter Excel and CSV files
     excel_files = [
         file
         for file in files
