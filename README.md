@@ -13,7 +13,7 @@ To run correctly the code, you need to :
 - Extract the github repository on your computer.
 - Open a terminal and go the directory of the project to move in the terminal, you can use the command line: cd filename
   To go back the command line is : cd ..
-- Run the following command in your terminal : conda env create -f environment.yml
+- Run the following command in your terminal to install the required Python packages : conda env create -f environment.yaml
 
 - Go on the Final_script folder by using the cd command. 
 - Put the file that you want to translate in the folder File_To_Convert create it if it does not exist.
