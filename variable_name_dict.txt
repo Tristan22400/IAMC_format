@@ -1,5 +1,4 @@
 {
-    'total_PE_by_region_': 'Total4',
     'world_PE_by_commodity|PE_agriculture_products': 'Primary Energy|Biomass|Energy Crop',
     'world_PE_by_commodity|PE_coal': 'Primary Energy|Coal',
     'world_PE_by_commodity|PE_oil': 'Primary Energy|Oil',
@@ -13,8 +12,6 @@
     'world_PE_by_commodity|PE_waste': 'Primary Energy|Waste',
     'world_PE_by_commodity|PE_wind': 'Primary Energy|Wind',
     'total_PE_by_region': 'Primary Energy',
-    'total_PE_by_region2': 'Total2',
-    'total_PE_by_region_1': 'Total1',
     'PE_by_commodity|PE_agriculture_products': 'Primary Energy|Biomass|Energy Crop',
     'PE_by_commodity|PE_coal': 'Primary Energy|Coal',
     'PE_by_commodity|PE_oil': 'Primary Energy|Oil',
