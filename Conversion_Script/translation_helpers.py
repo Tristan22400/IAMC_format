@@ -119,7 +119,7 @@ def process_list(
 
 def open_dict(dict_filename):
     # Open the text file containing the dictionary
-    with open("../Variable_Dict/" + dict_filename, "r") as f:
+    with open("../Create_Variable_Dict/" + dict_filename, "r") as f:
         # Read the contents of the file
         read_dict_str = f.read()
 
@@ -129,7 +129,6 @@ def open_dict(dict_filename):
 
 
 def create_automatic_translation(missing_variable_list): 
- 
 
     # Open the text file containing the age cohort dictionary
     age_cohort_dict = open_dict("age_cohort_dict.txt")
@@ -182,7 +181,7 @@ def create_automatic_translation(missing_variable_list):
     # Open the text file containing the transport_power_train_dict
     transport_power_train_dict = open_dict("transport_power_train_dict.txt")
 
-    dict_lict = [age_cohort_dict, COICOP_dict, economy_dashboard_dict, ev_chargers_dict, final_demand_dict, GHG_dict, households_demography_dict, land_dict, materials_W_dict, NRG_Commodities_dict]
+    dict_list = [age_cohort_dict, COICOP_dict, economy_dashboard_dict, ev_chargers_dict, final_demand_dict, GHG_dict, households_demography_dict, land_dict, materials_W_dict, NRG_Commodities_dict]
 
     # List with the words in uppercase which will not be capitalized by the next functions
     upper_word_list = update_dict.upper_word_list
@@ -191,7 +190,7 @@ def create_automatic_translation(missing_variable_list):
     # Process the variables not translated. 
     new_variable_name_dict = process_list(
         missing_variable_list,
-        dict_lict,
+        dict_list,
         update_dict.upper_word_list
     )
     
