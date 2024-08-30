@@ -4,7 +4,6 @@ import os
 import ast
 import pyam
 import matplotlib.pyplot as plt
-import report_pdf
 import argparse
 import translation_helpers
 
@@ -137,13 +136,6 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--arguments", help="insert argg")
     args = parser.parse_args()
-
-    # Inform the user if a report will be created
-    report_creation_bool = False
-    if args.arguments == 'report':
-        report_creation_bool = True
-        # Import the function to create the report
-        from report import create_report
 
     # Folders with input and output files
     folder_name_to_convert = "File_To_Convert"
@@ -346,10 +338,6 @@ def main():
 
     print("Conversion Done")
 
-    # If report is not activated, the script ends here
-    if not report_creation_bool: 
-        exit()
-
     # Structure to check the existance of the file
     try:
         scenario_df = pyam.IamDataFrame(
@@ -358,14 +346,9 @@ def main():
          # This defines the model and scenario used for the report
         args = dict(model="WILIAM", scenario=scenarios[0])
         
-        # Call to function
-        create_report(scenario_df, args)
-
     except Exception:
         print("ERROR opening the file with results in IAMC format")
         exit()
-
-    print("Report's creation in process")
 
 
 
