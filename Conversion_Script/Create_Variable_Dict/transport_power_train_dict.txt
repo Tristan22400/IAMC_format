@@ -1,0 +1,10 @@
+{'BEV': 'Electric Vehicle|Battery',
+ 'EV': 'Electric Vehicle',
+ 'FCEV': 'Electric Vehicle|Fuel Cell',
+ 'HEV': 'Electric Vehicle|Hybrid',
+ 'HPV': 'Human Powered Vehicle',
+ 'ICE_LPG': 'Internal Combustion Engine|Liquefied Petroleum Gas',
+ 'ICE_diesel': 'Internal Combustion Engine|Diesel',
+ 'ICE_gas': 'Internal Combustion Engine|Gas',
+ 'ICE_gasoline': 'Internal Combustion Engine|Gasoline',
+ 'PHEV': 'Electric Vehicle|Plug-in Hybrid'}

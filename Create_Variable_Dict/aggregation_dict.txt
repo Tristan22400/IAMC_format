@@ -1,4 +1,0 @@
-{('Primary Energy|Waste', 'Primary Energy|Win'): 'Primary Energy|Ne',
- ('Primary Energy|Waste', 'Primary Energy|Wind'): 'Primary Energy|New',
- ('world_PE_by_commodity|PE_waste', 'world_PE_by_commodity|PE_solar'): 'Primary '
-                                                                       'Energy|New'}

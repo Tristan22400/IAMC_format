@@ -1,0 +1,6 @@
+{'HIGH_GRADE': 'High Grade',
+ 'LOW_GRADE': 'Low Grade',
+ 'OCEANS_GRADE': 'Ocean Grade',
+ 'RICH_GRADE': 'Rich Grade',
+ 'TRACE_GRADE': 'Trace Grade',
+ 'ULTRALOW_GRADE': 'Ultralow Grade'}

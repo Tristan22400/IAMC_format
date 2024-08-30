@@ -1,3 +1,0 @@
-{
-    'share_of_new_EV_subtechn_batteries': 'share_of_new_EV_subtechn_batteries',
-}
