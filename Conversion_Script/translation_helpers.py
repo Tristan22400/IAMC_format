@@ -119,7 +119,7 @@ def process_list(
 
 def open_dict(dict_filename):
     # Open the text file containing the dictionary
-    with open("../Create_Variable_Dict/" + dict_filename, "r") as f:
+    with open("Create_Variable_Dict/" + dict_filename, "r") as f:
         # Read the contents of the file
         read_dict_str = f.read()
 
@@ -209,7 +209,7 @@ def create_automatic_translation(missing_variable_list):
 
     # Read the CSV file into a pandas DataFrame
     data_name_df = pd.read_excel(
-        "../Conversion-Script/Variable_Reference/Variable_name_IAMC.xlsx"
+        "Variable_name_IAMC.xlsx"
     )
     # Create a dict with Wiliam's name as key, IAMC's name as value
     IAMC_WILIAM_name_dict = data_name_df.set_index("WILIAM_variable")[

@@ -45,7 +45,7 @@ def get_path_files(folder_path):
 def open_dict(dict_filename):
     # Open the text file containing the dictionary
     try: 
-        with open("../Create_Variable_Dict/" + dict_filename, "r") as f:
+        with open("Create_Variable_Dict/" + dict_filename, "r") as f:
             # Read the contents of the file
             read_dict_str = f.read()
 
