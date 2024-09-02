@@ -63,9 +63,7 @@ The user can follow the next steps to install a stable version of the code and p
 
 ## Notes about the architecture
 
-The `wiliamcformat` package is built upon a suit of tools and functions provided by the `pyam` project. This project uses well-known libraries such as `pandas` and `plotly` to manage and visualize the data. So, results in WILIAM may be enriched with new updates in the aforementioned packages. `wiliamcformat` is structured in two blocks:
-- Translation of WILIAM variables into IAMC standards.
-- Notebooks to facilitate the reporting and visualization of data.
+The `wiliamcformat` package is built upon a suit of tools and functions provided by the `pyam` project. This project uses well-known libraries such as `pandas` and `plotly` to manage and visualize the data. So, results in WILIAM may be enriched with new updates in the aforementioned packages. `wiliamcformat` is structured in two blocks: translation of WILIAM variables into IAMC standards; and notebooks to facilitate the reporting and visualization of data.
 
 The user can download WILIAM in two languages, Python (https://github.com/LOCOMOTION-h2020/pywiliam) and Vensim (https://github.com/LOCOMOTION-h2020/WILIAM_model_VENSIM), and generate the CSV file of a simulation. Both tools were developed during the European H2020 Locomotion project (Grant Agreement number 821105). 
 
