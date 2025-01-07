@@ -1,0 +1,16 @@
+name: Environment YAML Action
+on:
+    push:
+        branches:
+            -main
+
+jobs:
+    env-action:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: Load environment from YAML
+              uses: doughepi/yaml-env-action@v1
+              with:
+                files: environment.yaml
