@@ -108,6 +108,7 @@
     'fuel_price_by_PROTRA_9R_adjusted|PROTRA_no_process_TI_hydrogen': 'Price Adjusted|Primary Energy|Hydrogen',
     'fuel_price_by_PROTRA_9R_adjusted|PROTRA_no_process_TI_solid_bio': 'Price Adjusted|Primary Energy|Solids|Biomass',
     'fuel_price_by_PROTRA_9R_adjusted|PROTRA_no_process_TI_solid_fossil': 'Price Adjusted|Primary Energy|Solids|Fossils',
+    'GHG_emissions_9R': 'Emissions|Kyoto Gases',
     'price_final_energy|CROPS|FE_elec': 'Price|Final Energy|Agriculture|AFOFI|Crops|Electricity [index]',
     'price_final_energy|CROPS|FE_gas': 'Price|Final Energy|Agriculture|AFOFI|Crops|Gas [index]',
     'price_final_energy|CROPS|FE_heat': 'Price|Final Energy|Agriculture|AFOFI|Crops|Heat [index]',
